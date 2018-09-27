@@ -1,6 +1,6 @@
 {
   "name": "ravepay",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Official Node library for Rave by Flutterwave",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,10 @@
   ],
   "author": "4y0, Temi, Flamez",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Flutterwave/ravepay-nodejs.git"
+  },
   "dependencies": {
     "bluebird": "^3.5.0",
     "chai-as-promised-also-chain": "^1.0.2",
