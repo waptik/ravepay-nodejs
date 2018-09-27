@@ -1,5 +1,5 @@
 {
-  "name": "ravepay-nodejs",
+  "name": "ravepay",
   "version": "1.0.1",
   "description": "Official Node library for Rave by Flutterwave",
   "main": "index.js",
