@@ -12,15 +12,16 @@ chai.use(chaiAsPromised);
 describe("#Rave Preauth service test", function(){
 
     var chargeResp, validationResp;
-    var ravebase = new base("FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X", "FLWSECK-bb971402072265fb156e90a3578fe5e6-X", false);
+    
+    var ravebase = new base("FLWPUBK-3899c4a996764a5d061ede002fa390f3-X", "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X", false);
 
     describe("#rave preauthorise card test", function(){
         it("shouldgive  a 200 response status", function(done){
-            var ravebase = new base("FLWPUBK-7adb6177bd71dd43c2efa3f1229e3b7f-X", "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X", false);
+            var ravebase = new base("FLWPUBK-3899c4a996764a5d061ede002fa390f3-X", "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X", false);
             var preauthInstance = new preauth(ravebase);
             this.timeout(10000);
             var payload = {
-                "PBFPubKey": "FLWPUBK-7adb6177bd71dd43c2efa3f1229e3b7f-X",
+                "PBFPubKey": "FLWPUBK-3899c4a996764a5d061ede002fa390f3-X",
                 "cardno": "5438898014560229",
                 "charge_type": "preauth",
                 "cvv": "812",
@@ -29,10 +30,10 @@ describe("#Rave Preauth service test", function(){
                 "currency": "NGN",
                 "country": "NG",
                 "amount": "100",
-                "email": "user@example.com",
-                "phonenumber": "08056552980",
-                "firstname": "user",
-                "lastname": "example",
+                "email": "e.ikedieze@gmail.com",
+                "phonenumber": "08030930236",
+                "firstname": "ikedieze",
+                "lastname": "ndukwe",
                 "IP": "40.198.14",
                 "txRef": "MC-" + Date.now(),
                 "redirect_url": "https://rave-web.herokuapp.com/receivepayment",
@@ -53,7 +54,7 @@ describe("#Rave Preauth service test", function(){
 
         it("should return a an error message that property charge_type is required", function(done){
             this.timeout(10000);
-            var ravebase = new base("FLWPUBK-8cd258c49f38e05292e5472b2b15906e-X", "FLWSECK-c51891678d48c39eff3701ff686bdb69-X", "https://ravesandboxapi.flutterwave.com");
+            var ravebase = new base("FLWPUBK-3899c4a996764a5d061ede002fa390f3-X", "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X", "https://ravesandboxapi.flutterwave.com");
             var preauthInstance = new preauth(ravebase);
             var payload = {
                 "cardno": "5399830213766064",
@@ -82,12 +83,12 @@ describe("#Rave Preauth service test", function(){
     describe("#rave void transaction test", function(){
         it("should return a void successful response", function(done){
             this.timeout(10000);
-            var ravebase = new base("FLWPUBK-8cd258c49f38e05292e5472b2b15906e-X", "FLWSECK-c51891678d48c39eff3701ff686bdb69-X", "https://ravesandboxapi.flutterwave.com");
+            var ravebase = new base("FLWPUBK-3899c4a996764a5d061ede002fa390f3-X", "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X", "https://ravesandboxapi.flutterwave.com");
             var preauthInstance = new preauth(ravebase);
             var payload = {
                 "id": "29518",
                 "action": "void",
-                "SECKEY": "FLWSECK-c51891678d48c39eff3701ff686bdb69-X"
+                "SECKEY": "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X"
             }
             var result = preauthInstance.void(payload).then(resp => {
                 return resp.body;
@@ -97,12 +98,12 @@ describe("#Rave Preauth service test", function(){
 
         it("should return a success status in the data object from response.", function(done){
             this.timeout(10000);
-            var ravebase = new base("FLWPUBK-8cd258c49f38e05292e5472b2b15906e-X", "FLWSECK-c51891678d48c39eff3701ff686bdb69-X", "https://ravesandboxapi.flutterwave.com");
+            var ravebase = new base("FLWPUBK-3899c4a996764a5d061ede002fa390f3-X", "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X", "https://ravesandboxapi.flutterwave.com");
             var preauthInstance = new preauth(ravebase);
             var payload = {
                 "id": "29518",
                 "action": "void",
-                "SECKEY": "FLWSECK-c51891678d48c39eff3701ff686bdb69-X"
+                "SECKEY": "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X"
             }
             var result = preauthInstance.void(payload).then(resp => {
                 return resp.body.data;
@@ -114,12 +115,12 @@ describe("#Rave Preauth service test", function(){
     describe("#Rave refund transaction test", function(){
         it("should return a refund complete message", function(done){
             this.timeout(10000);
-            var ravebase = new base("FLWPUBK-8cd258c49f38e05292e5472b2b15906e-X", "FLWSECK-c51891678d48c39eff3701ff686bdb69-X", "https://ravesandboxapi.flutterwave.com");
+            var ravebase = new base("FLWPUBK-3899c4a996764a5d061ede002fa390f3-X", "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X", "https://ravesandboxapi.flutterwave.com");
             var preauthInstance = new preauth(ravebase);
             var payload = {
                 "id": "29508",
                 "action": "refund",
-                "SECKEY": "FLWSECK-c51891678d48c39eff3701ff686bdb69-X"
+                "SECKEY": "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X"
             }
             var result = preauthInstance.void(payload).then(resp => {
                 return resp.body;
@@ -129,12 +130,12 @@ describe("#Rave Preauth service test", function(){
 
         it("should return a success status in the data object from response.", function(done){
             this.timeout(10000);
-            var ravebase = new base("FLWPUBK-8cd258c49f38e05292e5472b2b15906e-X", "FLWSECK-c51891678d48c39eff3701ff686bdb69-X", "https://ravesandboxapi.flutterwave.com");
+            var ravebase = new base("FLWPUBK-3899c4a996764a5d061ede002fa390f3-X", "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X", "https://ravesandboxapi.flutterwave.com");
             var preauthInstance = new preauth(ravebase);
             var payload = {
                 "id": "29508",
                 "action": "refund",
-                "SECKEY": "FLWSECK-c51891678d48c39eff3701ff686bdb69-X"
+                "SECKEY": "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X"
             }
             var result = preauthInstance.void(payload).then(resp => {
                 return resp.body.data;

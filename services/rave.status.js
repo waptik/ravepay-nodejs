@@ -2,8 +2,8 @@ var morx = require('morx');
 var q = require('q');
 
 var spec =  morx.spec() 
-				.build('flw_ref', 'required:false, eg:NGN') 
-				.build('tx_ref', 'required:false, eg:NGN') 
+				.build('flwref', 'required:false, eg:NGN') 
+				.build('txref', 'required:false, eg:NGN') 
 				.end();
 
 function service(data, _rave){
@@ -15,7 +15,7 @@ function service(data, _rave){
 		var validated = morx.validate(data, spec, _rave.MORX_DEFAULT);
 		var params = validated.params;
 
-		if(!params.flw_ref && !params.tx_ref) throw new Error('You must pass either flw_ref or tx_ref');
+		if(!params.flwref && !params.txref) throw new Error('You must pass either flwref or txref');
 
 		return params;
 
@@ -23,8 +23,8 @@ function service(data, _rave){
 	.then( params  => {
 
 		 
-		params.SECKEY = _rave.getSecretKey();  
-		return _rave.request('flwv3-pug/getpaidx/api/verify', params)
+		params.SECKEY = _rave.getSecretKey();
+		return _rave.request('flwv3-pug/getpaidx/api/v2/verify', params)
 	})
 	.then( response => {
 
