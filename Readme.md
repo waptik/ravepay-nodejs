@@ -117,8 +117,99 @@ rave.TokenCharge.card({
 })
 ```
 
-#Transfers
-```Javascript
+
+### Tranfers
+
+```javascript
+var Ravepay = require('ravepay');
+
+var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.Transfer.initiate(
+    {
+        "account_bank": "044",
+        "account_number": "0690000044",
+        "amount": 500,
+        "seckey": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X",
+        "narration": "New transfer",
+        "currency": "NGN",
+        "reference": "mk-902837-jk"
+    }
+).then(resp => {
+    console.log(resp.body);
+    
+}).catch(err => {
+    console.log(err);
+    
+})
+```
 
 
+### Subaccounts
+
+```javascript
+var Ravepay = require('ravepay');
+
+var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.Subaccount.create(
+    {
+	"account_bank": "044",
+	"account_number": "0690000035",
+	"business_name": "JK Services",
+	"business_email": "jk@services.com",
+	"business_contact": "Seun Alade",
+	"business_contact_mobile": "090890382",
+	"business_mobile": "09087930450",
+	"meta": [{"metaname": "MarketplaceID", "metavalue": "ggs-920900"}],
+	"seckey": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X"
+}
+).then(resp => {
+    console.log(resp.body);
+    
+}).catch(err => {
+    console.log(err);
+    
+})
+```
+
+
+### Subscriptions
+
+```javascript
+var Ravepay = require('ravepay');
+
+var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.Subscription.activate(
+    {
+	"id": 912,
+	"seckey": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X"
+}
+).then(resp => {
+    console.log(resp.body);
+    
+}).catch(err => {
+    console.log(err);
+    
+})
+```
+
+
+### Payment Plans
+
+```javascript
+var Ravepay = require('ravepay');
+
+var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.Paymentplan.list(
+    
+).then(resp => {
+    console.log(resp.body);
+    
+}).catch(err => {
+    console.log(err);
+    
+})
 ```
