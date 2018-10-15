@@ -1,6 +1,7 @@
 var morx = require('morx');
 var q = require('q');
-
+// var r = require('../lib/rave.base');
+// var R = new r("FLWPUBK-3899c4a996764a5d061ede002fa390f3-X", "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X", false)
 
 //This retrieves the fee for a transfer
 
@@ -49,3 +50,12 @@ function service(_rave){
 service.morxspc = spec;
 module.exports = service;
 
+// service(R).then((err, res) => {
+// 	if(err){
+// 		console.log(err)
+// 	}else{
+// 		console.log(res)
+// 	}
+// }).catch((err)=>{
+// 	console.log(err)
+// })

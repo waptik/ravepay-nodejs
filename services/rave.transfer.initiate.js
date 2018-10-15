@@ -16,20 +16,6 @@ var spec =  morx.spec()
                 .end();
                 
 
-// function test(data, _rave) {
-//     return new Promise((resolve, reject) => {
-//         var validated = morx.validate(data, spec, _rave.MORX_DEFAULT);
-// 		var params = validated.params;
-        
-//         params.seckey = _rave.getSecretKey();
-//         _rave.request('v2/gpx/transfers/create', params).then(res => {
-//             resolve(res)
-//         }).catch(err => {
-//             reject(err)
-//         })
-//     })
-// }
-
 function service(data, _rave){
 
 	var d = q.defer();
@@ -61,3 +47,4 @@ function service(data, _rave){
 }
 service.morxspc = spec;
 module.exports = service;
+

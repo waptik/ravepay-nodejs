@@ -1,7 +1,6 @@
 var morx = require('morx');
 var q = require('q');
 
-
 //This allows you retrieve a single transfer
 
 var spec =  morx.spec()  
