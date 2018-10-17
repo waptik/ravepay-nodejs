@@ -124,8 +124,22 @@ rave.TokenCharge.card({
 
 
 ### Tranfers
+When a transfer is initiated, it comes with a status ```NEW``` this means the transfer has been queued for processing, and you would need to use the ```reference``` you passed to call the Fetch a Transfer endpoint to retrieve the updated status of the transfer.
 
-This is used to initiate and manage payouts
+**Available countries you can transfer to**
+
+```Country	                Currency```
+    NG (Nigeria)            NGN
+
+    GH (Ghana)              GHS
+
+    KE (Kenya)              KES
+
+    UG (Ugandan)            UGX
+
+    US (United States)      USD
+
+    OT (Other countries)    GBP, EUR, AUD etc.
 
 **Functions included:**
 
@@ -143,8 +157,8 @@ This is used to initiate and manage payouts
 
 <br>
 
-### ```.initiate(payload)```
-This is called to start a transfer. The payload should be an object containing card information. It should have the following parameters:
+### ```.initiate()```
+This is called to start a transfer. The payload should contain the following card information:
 
 * ```'account_bank', 'required:true, eg:044'```, 
 
@@ -186,7 +200,7 @@ rave.Transfer.initiate(
 ```
 #### Returns
 
-This call returns an object. A sample response is:
+A sample response is:
 
 ```javascript
 {
@@ -212,7 +226,7 @@ This call returns an object. A sample response is:
 }
 ```
 
-### ```.bulk(payload)```
+### ```.bulk()```
 This allows you send bulk transfers.
 
 The payload should contain the following parameters
@@ -253,7 +267,7 @@ rave.Transfer.bulk(
 ```
 #### Returns
 
-This call returns an object. A sample response is:
+A sample response is:
 ```javascript
 {
     "status": "success",
@@ -346,14 +360,14 @@ rave.Transfer.getApplicableFee()
     })
 ```
 
-### ```.getBalance(payload)```
+### ```.getBalance()```
 This helps you get your balance for transfers.
 
 * ```'currency', 'required:required,eg:NGN'```,
 
 #### Returns
 
-This call returns an object. A sample response is:
+A sample response is:
 ```javascript
 {
     "status": "success",
@@ -383,7 +397,7 @@ This is used to create and manage subaccounts
 
 <br>
 
-### ```.create(payload)```
+### ```.create()```
 This function helps you to create a subaccount on rave.
 
 ```javascript
@@ -493,7 +507,7 @@ When you have created a payment plan you can subscribe a customer to it by simpl
 * ```.edit```
 
 
-### ```.create(payload)```
+### ```.create()```
 This function allows you to create payment plans  on rave.
 
 ```javascript

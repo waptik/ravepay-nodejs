@@ -10,11 +10,11 @@ chai.use(chaiAsPromised);
 
 describe("#Rave Transfer test", function() {
     var transferResp;
-    var ravebase = new base("FLWPUBK-3899c4a996764a5d061ede002fa390f3-X", "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X", false);
+    var ravebase = new base("FLWPUBK-a5715a67d24e61ce3e7bf79ae22ef524-X", "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X", false);
     var transferInstance = new transfer(ravebase);
     // console.log(transferInstance);
 
-    describe("#Rave Transfer leg test", function () {
+    describe("#Rave initiate Transfer leg test", function () {
         it("should return a status success response", function(done) {
             this.timeout(10000);
             var payload = {
@@ -24,18 +24,19 @@ describe("#Rave Transfer test", function() {
                 "country": "NG",
                 "amount": "100",
                 "email": "e.ikedieze@gmail.com",
-                "phonenumber": "08056552980",
+                "phonenumber": "08030930236",
                 "firstname": "ikedieze",
                 "lastname": "ndukwe",
                 "IP": "355426087298442",
-                "txRef": "MC-7663-YU",
-                "secKey": "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X",
-                "reference": "mk-0989098-jk"
+                "txRef": "MC-67vAy7i3-YU",
+                "secKey": "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X",
+                "reference": "mk-teu6u54i-jk"
             }
             transferResp=[];
             transferInstance.initiate(payload).then(resp => {
+                console.log("Initiate transfer", resp.body)
                 transferResp = resp;
-                if (resp.status == "success") {
+                if (resp.statusCode == 200) {
                     done();
                 }
                 
@@ -46,34 +47,35 @@ describe("#Rave Transfer test", function() {
     });
 
     describe("#Rave bulk transfer test", function () {
-        it("should return a status success response", function(done) {
+        it("should return status: BULK-TRANSFER-CREATED", function(done) {
             this.timeout(10000);
             var payload = {
-                "seckey":"FLWSECK-0b1d6669cf375a6208db541a1d59adbb-X",
+                "seckey":"FLWSECK-6577e947f692e979e2d306ab4ce0a282-X",
                 "title":"May Staff Salary",
                 "bulk_data":[
                     {
                       "Bank":"044",
                       "Account Number": "0690000032",
-                      "Amount":500,
+                      "Amount":300,
                       "Currency":"NGN",
                       "Narration":"Bulk transfer 1",
-                      "reference": "mk-82973029"
+                      "reference": "mk-82973029-uy"
                   },
                   {
                       "Bank":"044",
                       "Account Number": "0690000034",
-                      "Amount":500,
+                      "Amount":200,
                       "Currency":"NGN",
                       "Narration":"Bulk transfer 2",
-                      "reference": "mk-283874750"
+                      "reference": "mk-2838747yu50"
                   }
                 ]
               }
             transferResp=[];
             transferInstance.bulk(payload).then(resp => {
+                console.log("Bulk transfers", resp.body)
                 transferResp = resp;
-                if (resp.status == "success") {
+                if (resp.statusCode == 200) {
                     done();
                 }
                 
@@ -81,7 +83,65 @@ describe("#Rave Transfer test", function() {
                 done(err);
             })
         })
-    })
+    });
+
+    // describe("#Rave, Fetch a single Transfer", function () {
+    //     it("should return success, QUERIED-TRANSFERS", function(done) {
+    //         this.timeout(10000);
+            
+    //         transferResp=[];
+    //         transferInstance.fetch(ravebase).then(resp => {
+    //             console.log("Fetch transfer", resp.body)
+    //             transferResp = resp;
+    //             if (resp.statusCode == 200) {
+    //                 done();
+    //             }
+                
+    //         }).catch(err => {
+    //             done(err);
+    //         })
+    //     })
+    // });
+
+    // describe("#Rave, List Transfers", function () {
+    //     it("should return success, QUERIED-TRANSFERS", function(done) {
+    //         this.timeout(10000);
+    //         var payload = {
+    //             "secKey": "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X",
+    //         }
+    //         transferResp=[];
+    //         transferInstance.list(ravebase).then(resp => {
+    //             console.log("List transfers", resp.body)
+    //             transferResp = resp;
+    //             if (resp.statusCode == 200) {
+    //                 done();
+    //             }
+                
+    //         }).catch(err => {
+    //             done(err);
+    //         })
+    //     })
+    // });
+
+    describe("#Get your balance for transfers", function () {
+        it("should return: success, WALLET-BALANCE", function(done) {
+            this.timeout(10000);
+            var payload = {
+                "currency": "NGN",
+            }
+            transferResp=[];
+            transferInstance.getApplicableFee(ravebase).then(resp => {
+                console.log("Get transfer balance", resp.body)
+                transferResp = resp;
+                if (resp.statusCode == 200) {
+                    done();
+                }
+                
+            }).catch(err => {
+                done(err);
+            })
+        })
+    });
 })
 
 

@@ -1,7 +1,6 @@
 var morx = require('morx');
 var q = require('q');
 
-
 //This allows you fetch all transfers
 
 var spec =  morx.spec()  
@@ -47,13 +46,3 @@ function service(_rave){
 }
 service.morxspc = spec;
 module.exports = service;
-
-// service(R).then((err, res) => {
-// 	if(err){
-// 		console.log(err)
-// 	}else{
-// 		console.log(res)
-// 	}
-// }).catch((err)=>{
-// 	console.log(err)
-// })

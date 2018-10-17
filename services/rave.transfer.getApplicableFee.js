@@ -25,7 +25,7 @@ function service(_rave){
 	.then( _rave  => {
 		 
         _rave.params.seckey = _rave.getSecretKey(); 
-        // console.log(_rave.params.seckey)
+        console.log(_rave.params.seckey)
 		_rave.params.method = "GET"; 
         return _rave.request('v2/gpx/transfers/fee', _rave.params)
         
