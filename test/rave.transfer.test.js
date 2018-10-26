@@ -28,9 +28,9 @@ describe("#Rave Transfer test", function() {
                 "firstname": "ikedieze",
                 "lastname": "ndukwe",
                 "IP": "355426087298442",
-                "txRef": "MC-67vAy7i3-YU",
+                "txRef": "MC-67737-YU",
                 "secKey": "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X",
-                "reference": "mk-teu6u54i-jk"
+                "reference": "mk-6u54i-jk"
             }
             transferResp=[];
             transferInstance.initiate(payload).then(resp => {

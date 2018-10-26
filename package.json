@@ -1,7 +1,7 @@
 {
-  "name": "ravepay",
+  "name": "ravenodejs",
   "version": "1.0.0",
-  "description": "Official Node library for Rave by Flutterwave",
+  "description": "Node library for Rave by Flutterwave",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -9,13 +9,14 @@
   "keywords": [
     "ravepay",
     "flutterwave",
-    "ravebyflutterwave"
+    "ravebyflutterwave",
+    "ravenodjs"
   ],
-  "author": "4y0, Temi, Flamez",
+  "author": "4y0, Temi, Flamez, ikedieze",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Flutterwave/ravepay-nodejs.git"
+    "url": "https://github.com/codenuel/ravepay-nodejs.git"
   },
   "dependencies": {
     "bluebird": "^3.5.0",

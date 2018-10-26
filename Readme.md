@@ -128,7 +128,8 @@ When a transfer is initiated, it comes with a status ```NEW``` this means the tr
 
 **Available countries you can transfer to**
 
-```Country	                Currency```
+***Country	                Currency***
+
     NG (Nigeria)            NGN
 
     GH (Ghana)              GHS

@@ -1,6 +1,8 @@
 var morx = require('morx');
 var charge = require('./rave.charge');
 var q = require('q');
+// var r = require('../lib/rave.base');
+// var R = new r("FLWPUBK-a5715a67d24e61ce3e7bf79ae22ef524-X", "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X", false)
 
 
 //This allows you send bulk transfers
@@ -44,3 +46,35 @@ function service(data, _rave){
 service.morxspc = spec;
 module.exports = service;
 
+// payload = {
+//     "seckey":"FLWSECK-6577e947f692e979e2d306ab4ce0a282-X",
+//     "title":"May Staff Salary",
+//     "bulk_data":[
+//         {
+//           "Bank":"044",
+//           "Account Number": "0690000032",
+//           "Amount":500,
+//           "Currency":"NGN",
+//           "Narration":"Bulk transfer 1",
+//           "reference": "mk-82973029"
+//       },
+//       {
+//           "Bank":"044",
+//           "Account Number": "0690000034",
+//           "Amount":500,
+//           "Currency":"NGN",
+//           "Narration":"Bulk transfer 2",
+//           "reference": "mk-283874750"
+//       }
+//     ]
+//   }
+
+// service(payload, R).then((err, res) => {
+// 	if(err){
+// 		console.log(err)
+// 	}else{
+// 		console.log(res)
+// 	}
+// }).catch(err => {
+// 	console.log(err)
+// })

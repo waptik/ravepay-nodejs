@@ -25,6 +25,7 @@ var spec =  morx.spec()
 				.build('bvn', 'required:false, eg:1234567890') 
 				.build('charge_type', 'required:false, eg:recurring-monthly')  
 				.build('device_fingerprint', 'required:false,eg:12233') 
+				.build('redirect_url', 'required:false,eg:12233') 
 				.build('recurring_stop', 'required:false,eg:2017-05-10')
 				.build('include_integrity_hash', 'required:false,eg:2017-05-10')
 				.end();

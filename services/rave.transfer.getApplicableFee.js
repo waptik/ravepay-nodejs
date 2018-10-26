@@ -1,7 +1,7 @@
 var morx = require('morx');
 var q = require('q');
 // var r = require('../lib/rave.base');
-// var R = new r("FLWPUBK-3899c4a996764a5d061ede002fa390f3-X", "FLWSECK-ff7445bbd6971fabbf987975afdc85ea-X", false)
+// var R = new r("FLWPUBK-a5715a67d24e61ce3e7bf79ae22ef524-X", "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X", false)
 
 //This retrieves the fee for a transfer
 
@@ -25,7 +25,7 @@ function service(_rave){
 	.then( _rave  => {
 		 
         _rave.params.seckey = _rave.getSecretKey(); 
-        console.log(_rave.params.seckey)
+        // console.log(_rave.params.seckey)
 		_rave.params.method = "GET"; 
         return _rave.request('v2/gpx/transfers/fee', _rave.params)
         
@@ -49,6 +49,7 @@ function service(_rave){
 }
 service.morxspc = spec;
 module.exports = service;
+
 
 // service(R).then((err, res) => {
 // 	if(err){
