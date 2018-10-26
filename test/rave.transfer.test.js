@@ -10,7 +10,7 @@ chai.use(chaiAsPromised);
 
 describe("#Rave Transfer test", function() {
     var transferResp;
-    var ravebase = new base("FLWPUBK-a5715a67d24e61ce3e7bf79ae22ef524-X", "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X", false);
+    var ravebase = new base("", "", false);
     var transferInstance = new transfer(ravebase);
     // console.log(transferInstance);
 
@@ -29,7 +29,7 @@ describe("#Rave Transfer test", function() {
                 "lastname": "ndukwe",
                 "IP": "355426087298442",
                 "txRef": "MC-67737-YU",
-                "secKey": "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X",
+                "secKey": "",
                 "reference": "mk-6u54i-jk"
             }
             transferResp=[];
@@ -50,7 +50,7 @@ describe("#Rave Transfer test", function() {
         it("should return status: BULK-TRANSFER-CREATED", function(done) {
             this.timeout(10000);
             var payload = {
-                "seckey":"FLWSECK-6577e947f692e979e2d306ab4ce0a282-X",
+                "seckey":"",
                 "title":"May Staff Salary",
                 "bulk_data":[
                     {
@@ -107,7 +107,7 @@ describe("#Rave Transfer test", function() {
     //     it("should return success, QUERIED-TRANSFERS", function(done) {
     //         this.timeout(10000);
     //         var payload = {
-    //             "secKey": "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X",
+    //             "secKey": "",
     //         }
     //         transferResp=[];
     //         transferInstance.list(ravebase).then(resp => {

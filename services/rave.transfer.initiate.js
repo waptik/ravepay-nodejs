@@ -2,9 +2,6 @@ var morx = require('morx');
 var charge = require('./rave.charge');
 var q = require('q');
 
-// var r = require('../lib/rave.base');
-// var R = new r("FLWPUBK-a5715a67d24e61ce3e7bf79ae22ef524-X", "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X", false)
-
 //This allows you initiate a transfer
 
 var spec =  morx.spec()
@@ -54,7 +51,7 @@ module.exports = service;
 // 	"account_bank": "044",
 // 	"account_number": "0017704603",
 // 	"amount": 500,
-// 	"seckey": "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X",
+// 	"seckey": "",
 // 	"narration": "DSTV bill",
 // 	"currency": "NGN",
 // 	"reference": "mk-1808937-jk"

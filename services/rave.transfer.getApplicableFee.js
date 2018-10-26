@@ -1,7 +1,6 @@
 var morx = require('morx');
 var q = require('q');
-// var r = require('../lib/rave.base');
-// var R = new r("FLWPUBK-a5715a67d24e61ce3e7bf79ae22ef524-X", "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X", false)
+
 
 //This retrieves the fee for a transfer
 

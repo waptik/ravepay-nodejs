@@ -1,8 +1,7 @@
 var morx = require('morx');
 var charge = require('./rave.charge');
 var q = require('q');
-// var r = require('../lib/rave.base');
-// var R = new r("FLWPUBK-a5715a67d24e61ce3e7bf79ae22ef524-X", "FLWSECK-6577e947f692e979e2d306ab4ce0a282-X", false)
+
 
 //This allows you verify an account to transfer to
 
@@ -50,10 +49,10 @@ module.exports = service;
 // payload = {
 //     "recipientaccount": "0690000034",
 //     "destbankcode": "044",
-//     "PBFPubKey": "FLWPUBK-a5715a67d24e61ce3e7bf79ae22ef524-X"
+//     "PBFPubKey": "FLWPUBK-4e9d4e37974a61157ce8ca4f43c84936-X"
 //   }
 
-// service(payload).then((err, res) => {
+// service(payload, R).then((err, res) => {
 // 	if(err){
 // 		console.log(err)
 // 	}else{
