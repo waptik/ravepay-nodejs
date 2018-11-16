@@ -5,18 +5,29 @@ var mocha = require('mocha');
 var chai = require('chai');
 var expect = chai.expect;
 var chaiAsPromised = require('chai-as-promised');
+require('dotenv').config({ path: '../\.env' });
+
 
 chai.use(chaiAsPromised);
 
 describe("#Rave Transfer test", function() {
     var transferResp;
-    var ravebase = new base("", "", false);
+    var public_key = process.env.PUBLIC_KEY;
+    var secret_key = process.env.SECRET_KEY;
+    var production_flag = process.env.PRODUCTION_FLAG;
+
+    console.log(public_key)
+
+    var ravebase = new base(public_key, secret_key, production_flag);
+
     var transferInstance = new transfer(ravebase);
     // console.log(transferInstance);
 
     describe("#Rave initiate Transfer leg test", function () {
+
         it("should return a status success response", function(done) {
             this.timeout(10000);
+            
             var payload = {
                 "account_number": "0690000031",
                 "account_bank": "044",
@@ -29,7 +40,7 @@ describe("#Rave Transfer test", function() {
                 "lastname": "ndukwe",
                 "IP": "355426087298442",
                 "txRef": "MC-67737-YU",
-                "secKey": "",
+                "secKey": secret_key,
                 "reference": "mk-6u54i-jk"
             }
             transferResp=[];

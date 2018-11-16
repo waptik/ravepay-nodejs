@@ -1,6 +1,8 @@
 var morx = require('morx');
 var charge = require('./rave.charge');
 var q = require('q');
+// var r = require('../lib/rave.base');
+// var R = new r("", "", false);
 
 //This allows you initiate a transfer
 
@@ -54,7 +56,7 @@ module.exports = service;
 // 	"seckey": "",
 // 	"narration": "DSTV bill",
 // 	"currency": "NGN",
-// 	"reference": "mk-1808937-jk"
+// 	"reference": "mk-18089e7-jk"
 //   }
 
 // service(payload, R).then((err, res) => {
