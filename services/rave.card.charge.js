@@ -27,6 +27,7 @@ var spec =  morx.spec()
 				.build('device_fingerprint', 'required:false,eg:12233') 
 				.build('recurring_stop', 'required:false,eg:2017-05-10')
 				.build('include_integrity_hash', 'required:false,eg:2017-05-10')
+				.build('redirect_url', 'required:false,eg:http://your_redirect_url.com')
 				.end();
 
 function service(data, _rave){
