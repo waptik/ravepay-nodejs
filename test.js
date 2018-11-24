@@ -39,7 +39,6 @@ var payload3 = {
 //     console.log("---err---: ", err);
 // })
 
-
 rave.CustomRequest.custom('/gpx/merchant/transactions/refund', payload)
                     .then( resp => {
                         console.log("this is the response: ", resp);
