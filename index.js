@@ -8,7 +8,10 @@ var misc     = require('./lib/rave.misc');
 var preauth = require('./lib/rave.cardpreauth');
 var security = require('./lib/security');
 var custom   = require('./lib/rave.custom');
-
+var transfer = require('./lib/rave.transfer');
+var subaccount = require('./lib/rave.subaccount');
+var subscription = require('./lib/rave.subscription');
+var paymentplan  = require('./lib/rave.paymentplan');
 
 var Rave = function (public_key, public_secret, base_url_or_production_flag)
 {
@@ -24,6 +27,10 @@ var Rave = function (public_key, public_secret, base_url_or_production_flag)
 	this.Preauth 	   = new preauth(ravebase); 
 	this.security      = security; 
 	this.CustomRequest = new custom(ravebase); 
+	this.Transfer      = new transfer(ravebase);
+	this.Subaccount	   = new subaccount(ravebase);
+	this.Subscription  = new subscription(ravebase);
+	this.Paymentplan   = new paymentplan(ravebase);
 
 	this.getIntegrityHash = function (data) { return ravebase.getIntegrityHash(data); }
 
