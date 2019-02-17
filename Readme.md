@@ -2,17 +2,16 @@
 
 ## Ravepay Services exposed by the library
 
-- Account Charge 
 - Card Charge
-- USSD Charge
+- Tokenized Charge
 - Fees
 - Banks
-- TokenCharge
-- Card PreAuthorization
+- Account Charge 
 - Transfers
 - Subaccount
 - Subscription
 - Payment Plan
+- Card PreAuthorization
 
 For more information on the services listed above, visit the [Ravepay website](http://rave.flutterwave.com/)
 
@@ -52,14 +51,12 @@ var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 rave.Card.charge(
     {
         "cardno": "5438898014560229",
-        "cvv": "890",
-        "expirymonth": "09",
-        "expiryyear": "19",
+        "cvv": "564",
+        "expirymonth": "10",
+        "expiryyear": "20",
         "currency": "NGN",
         "country": "NG",
         "amount": "10",
-        "pin": "3310",
-        "suggested_auth": "pin",
         "email": "user@gmail.com",
         "phonenumber": "0902620185",
         "firstname": "temi",
@@ -186,7 +183,6 @@ rave.Transfer.initiate(
         "account_bank": "044",
         "account_number": "0690000044",
         "amount": 500,
-        "seckey": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X",
         "narration": "New transfer",
         "currency": "NGN",
         "reference": "mk-902837-jk"
@@ -237,7 +233,6 @@ The payload should contain the following parameters
 ```javascript
 rave.Transfer.bulk(
     {
-  "seckey":"FLWSECK-0b1d6669cf375a6208db541a1d59adbb-X",
   "title":"May Staff Salary",
   "bulk_data":[
   	{
@@ -415,8 +410,7 @@ rave.Subaccount.create(
 	"business_contact": "Seun Alade",
 	"business_contact_mobile": "090890382",
 	"business_mobile": "09087930450",
-	"meta": [{"metaname": "MarketplaceID", "metavalue": "ggs-920900"}],
-	"seckey": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X"
+	"meta": [{"metaname": "MarketplaceID", "metavalue": "ggs-920900"}]
 }
 ).then(resp => {
     console.log(resp.body);
@@ -522,7 +516,7 @@ rave.Paymentplan.create(
         name: 'fosm',
         interval: 'daily',
         duration: 5,
-        seckey: 'FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X' },
+    },
         json: true 
     }
     
@@ -600,7 +594,7 @@ This function allows you to cancel an exisiting payment plan
 rave.Paymentplan.cancel(
     {
 	"id": 912,
-	"seckey": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X"
+	
 }
 ).then(resp => {
     console.log(resp.body);
@@ -620,7 +614,7 @@ This function allows you to edit a payment plan
 rave.Paymentplan.edit(
     {
 	"id": 912,
-	"seckey": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X"
+	
 }
 ).then(resp => {
     console.log(resp.body);
@@ -684,7 +678,7 @@ This function allows you to cancel an exisiting subscription
 rave.Subscription.cancel(
     {
 	"id": 912,
-	"seckey": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X"
+	
 }
 ).then(resp => {
     console.log(resp.body);
@@ -703,7 +697,7 @@ This page describes how to activate a subscription
 rave.Subscription.activate(
     {
 	"id": 912,
-	"seckey": "FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X"
+	
 }
 ).then(resp => {
     console.log(resp.body);
