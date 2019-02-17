@@ -2,6 +2,10 @@ var morx = require('morx');
 var q = require('q');
 var charge = require('./rave.charge');
 
+// require('dotenv').config();
+// var r = require('../lib/rave.base');
+// var R = new r("", "", false)
+
 var spec =  morx.spec()
 				.build('cardno', 'required:true,validators:isNumeric, eg:5590131743294314')
 				.build('currency', 'required:false, eg:NGN')
@@ -57,3 +61,33 @@ function service(data, _rave){
 }
 service.morxspc = spec;
 module.exports = service;
+
+// payload = {
+// 		"cardno": "5438898014560229",
+//         "cvv": "564",
+//         "expirymonth": "10",
+//         "expiryyear": "20",
+//         "currency": "NGN",
+//         "country": "NG",
+//         "amount": "10",
+//         "email": "user@gmail.com",
+//         "phonenumber": "0902620185",
+//         "firstname": "temi",
+//         "lastname": "desola",
+//         "IP": "355426087298442",
+//         "txRef": "MC-" + Date.now(),// your unique merchant reference
+//         "meta": [{metaname: "flightID", metavalue: "123949494DC"}],
+//         "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
+//         "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
+// 	}
+
+
+// service(payload, R).then((err, res) => {
+// 	if(err){
+// 		console.log(err)
+// 	}else{
+// 		console.log(res)
+// 	}
+// }).catch(err => {
+// 	console.log(err)
+// })
