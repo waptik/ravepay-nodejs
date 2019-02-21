@@ -92,27 +92,19 @@ var Ravepay = require('ravepay');
 
 var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
-
 rave.TokenCharge.card({
-    "token": "flw-t0-341d0303583cfbfdf4be74bb52d63ce1-m03k",
-    "currency": "NGN",
-    "country": "NG",
-    "amount": "10",
-    "pin": "3310",
-    "suggested_auth": "pin",
-    "email": "user@gmail.com",
-    "phonenumber": "0902620185",
-    "firstname": "temi",
-    "lastname": "desola",
-    "IP": "355426087298442",
-    "txRef": "MC-" + Date.now(),// your unique merchant reference
-    "meta": [{metaname: "flightID", metavalue: "123949494DC"}],
-    "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
-    "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
-
+   "currency":"NGN",
+   "SECKEY":"FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X",
+   "token":"flw-t0876849e016386b2d-k3n-mock",
+   "country":"NG",
+   "amount":1000,
+   "email":"desola.ade1@gmail.com",
+   "firstname":"temi",
+   "lastname":"Oyekole",
+   "IP":"190.233.222.1",
+   "txRef":"MC-7666-YU"
 }).then(resp => {
     console.log(resp.body);
-    
 }).catch(err => {
     console.log(err);
     
