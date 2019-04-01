@@ -2,17 +2,16 @@
 
 ## Ravepay Services exposed by the library
 
-- Account Charge 
 - Card Charge
-- USSD Charge
+- Tokenized Charge
 - Fees
 - Banks
-- TokenCharge
-- Card PreAuthorization
+- Account Charge 
 - Transfers
 - Subaccount
 - Subscription
 - Payment Plan
+- Card PreAuthorization
 
 For more information on the services listed above, visit the [Ravepay website](http://rave.flutterwave.com/)
 
@@ -93,9 +92,9 @@ var Ravepay = require('ravepay');
 
 var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
-
 rave.TokenCharge.card({
    "currency":"NGN",
+   "SECKEY":"FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X",
    "token":"flw-t0876849e016386b2d-k3n-mock",
    "country":"NG",
    "amount":1000,
@@ -104,10 +103,8 @@ rave.TokenCharge.card({
    "lastname":"Oyekole",
    "IP":"190.233.222.1",
    "txRef":"MC-7666-YU"
-
 }).then(resp => {
     console.log(resp.body);
-    
 }).catch(err => {
     console.log(err);
     
@@ -406,6 +403,7 @@ rave.Subaccount.create(
 	"business_contact_mobile": "090890382",
 	"business_mobile": "09087930450",
 	"meta": [{"metaname": "MarketplaceID", "metavalue": "ggs-920900"}]
+}
 ).then(resp => {
     console.log(resp.body);
     
@@ -588,6 +586,7 @@ This function allows you to cancel an exisiting payment plan
 rave.Paymentplan.cancel(
     {
 	"id": 912,
+	
 }
 ).then(resp => {
     console.log(resp.body);
@@ -607,6 +606,7 @@ This function allows you to edit a payment plan
 rave.Paymentplan.edit(
     {
 	"id": 912,
+	
 }
 ).then(resp => {
     console.log(resp.body);
@@ -669,8 +669,8 @@ This function allows you to cancel an exisiting subscription
 
 rave.Subscription.cancel(
     {
-	    "id": 912,
-}
+    "id": 912
+    }
 ).then(resp => {
     console.log(resp.body);
     
