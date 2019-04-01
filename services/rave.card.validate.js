@@ -1,10 +1,6 @@
 var morx = require('morx');
 var q = require('q');
-var charge = require('./rave.charge');
 
-// require('dotenv').config();
-// var r = require('../lib/rave.base');
-// var R = new r("", "", false)
 
 var spec =  morx.spec()
 				.build('otp', 'required:true, eg:5590')
@@ -30,7 +26,6 @@ function service(data, _rave){
 	})
 	.then( response => {
 
-		//console.log(response);
 		d.resolve(response);
 
 	})
@@ -48,17 +43,17 @@ function service(data, _rave){
 service.morxspc = spec;
 module.exports = service;
 
-// payload = {
-// 	"otp": "12345",
-// 	"transaction_reference": "FLW-MOCK-17e915bec5a86f4b92b358ce6d72144e",
-// }
+payload = {
+	"otp": "328568",
+	"transaction_reference": "FLW123641042",
+}
 
-// service(payload, R).then((err, res) => {
-// 	if(err){
-// 		console.log(err)
-// 	}else{
-// 		console.log(res)
-// 	}
-// }).catch(err => {
-// 	console.log(err)
-// })
+service(payload, R).then((err, res) => {
+	if(err){
+		console.log(err)
+	}else{
+		console.log(res)
+	}
+}).catch(err => {
+	console.log(err)
+})
