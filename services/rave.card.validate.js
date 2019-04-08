@@ -42,18 +42,3 @@ function service(data, _rave){
 }
 service.morxspc = spec;
 module.exports = service;
-
-payload = {
-	"otp": "328568",
-	"transaction_reference": "FLW123641042",
-}
-
-service(payload, R).then((err, res) => {
-	if(err){
-		console.log(err)
-	}else{
-		console.log(res)
-	}
-}).catch(err => {
-	console.log(err)
-})

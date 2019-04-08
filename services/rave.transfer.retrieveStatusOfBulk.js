@@ -46,14 +46,3 @@ function service(_rave, batch_id=""){
 }
 service.morxspc = spec;
 module.exports = service;
-
-
-// service(R, batch_id=590).then((err, res) => {
-// 	if(err){
-// 		console.log(err)
-// 	}else{
-// 		console.log(res)
-// 	}
-// }).catch(err => {
-// 	console.log(err)
-// })

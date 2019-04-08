@@ -1,8 +1,6 @@
 var morx = require('morx');
 var q = require('q');
 
-// var r = require('../lib/rave.base');
-// var R = new r("", "", false)
 
 
 //This allows you retrieve a single transfer
@@ -53,14 +51,3 @@ function service(_rave, reference=""){
 service.morxspc = spec;
 module.exports = service;
 
-
-
-// service(R, reference=2922).then((err, res) => {
-// 	if(err){
-// 		console.log(err)
-// 	}else{
-// 		console.log(res)
-// 	}
-// }).catch(err => {
-// 	console.log(err)
-// })

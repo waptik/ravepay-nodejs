@@ -1,8 +1,6 @@
 var morx = require('morx');
 var charge = require('./rave.charge');
 var q = require('q');
-// var r = require('../lib/rave.base');
-// var R = new r("", "", false);
 
 //This allows you initiate a transfer
 
@@ -48,23 +46,3 @@ function service(data, _rave){
 service.morxspc = spec;
 module.exports = service;
 
-
-// payload = {
-// 	"account_bank": "044",
-// 	"account_number": "0017704603",
-// 	"amount": 500,
-// 	"seckey": "",
-// 	"narration": "DSTV bill",
-// 	"currency": "NGN",
-// 	"reference": "mk-18089e7-jk"
-//   }
-
-// service(payload, R).then((err, res) => {
-// 	if(err){
-// 		console.log(err)
-// 	}else{
-// 		console.log(res)
-// 	}
-// }).catch(err => {
-// 	console.log(err)
-// })
