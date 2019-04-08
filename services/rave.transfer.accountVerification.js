@@ -46,18 +46,3 @@ service.morxspc = spec;
 module.exports = service;
 
 
-// payload = {
-//     "recipientaccount": "0690000034",
-//     "destbankcode": "044",
-//     "PBFPubKey": ""
-//   }
-
-// service(payload, R).then((err, res) => {
-// 	if(err){
-// 		console.log(err)
-// 	}else{
-// 		console.log(res)
-// 	}
-// }).catch(err => {
-// 	console.log(err)
-// })

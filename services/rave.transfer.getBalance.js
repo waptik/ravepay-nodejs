@@ -43,18 +43,3 @@ function service(data, _rave){
 service.morxspc = spec;
 module.exports = service;
 
-
-// payload = {
-// 	"currency": "NGN",
-// 	"seckey": ""
-// }
-
-// service(payload, R).then((err, res) => {
-// 	if(err){
-// 		console.log(err)
-// 	}else{
-// 		console.log(res)
-// 	}
-// }).catch(err => {
-// 	console.log(err)
-// })

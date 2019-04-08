@@ -35,6 +35,7 @@ var spec =  morx.spec()
 				.build('is_mcash', 'required:false')
 				.build('include_integrity_hash', 'required:false')
 				.build('orderRef', 'required:false')
+				.build('redirect_url', 'required:false,eg:http://your_redirect_url.com')
 				.end();
 
 function service(data, _rave){
