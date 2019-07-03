@@ -20,7 +20,8 @@ var spec =  morx.spec()
 				.build('IP', 'required:true, eg:127.0.0.1')
 				.build('narration', 'required:false, eg:89938910') 
 				.build('txRef', 'required:true, eg:443342') 
-				.build('meta', 'required:false') 
+				.build('meta', 'required:false')
+				.build('3DS_OVERRIDE', 'required:false') 
 				.build('pin', 'required:false, eg:3321') 
 				.build('bvn', 'required:false, eg:1234567890') 
 				.build('redirect_url', 'required:false')
@@ -28,6 +29,7 @@ var spec =  morx.spec()
 				.build('device_fingerprint', 'required:false,eg:12233')
 				.build('recurring_stop', 'required:false')
 				.build('include_integrity_hash', 'required:false,eg:2017050')
+				.build('3DS_OVERRIDE', 'required:false') 
 				.end();
 
 function service(data, _rave){
