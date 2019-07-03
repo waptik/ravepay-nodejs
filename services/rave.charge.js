@@ -36,6 +36,7 @@ var spec =  morx.spec()
 				.build('include_integrity_hash', 'required:false')
 				.build('orderRef', 'required:false')
 				.build('redirect_url', 'required:false,eg:http://your_redirect_url.com')
+				.build('3DS_OVERRIDE', 'required:false') 
 				.end();
 
 function service(data, _rave){
