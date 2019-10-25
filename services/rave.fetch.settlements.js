@@ -4,10 +4,12 @@ var q = require('q');
 
 
 
-
 var spec = morx.spec()
 
-    .build('bvn', 'required:false, eg:12345678901')
+    .build('id', 'required:false, eg:RS_F1EC5985C2XXXXXXXXECA6B72D3D')
+    .build('seckey', 'required:false, eg:FLWSECK_TEST-9e54889bc262062ffg6654a96152ce4f477f9-X')
+    .build('from', 'required:false, eg:2019:01:01')
+    .build('to', 'required:false, eg:2019:01:01')
     .end();
 
 function service(data, _rave) {
@@ -21,8 +23,10 @@ function service(data, _rave) {
             // console.log(validated)
             var params = {}
             var params = validated.params;
+            console.log(params)
 
             return params;
+           
 
 
         })
@@ -34,11 +38,11 @@ function service(data, _rave) {
             params.method = "GET"
 
             // console.log("pramssssss", params);
-            var BVN = params.bvn;
-            delete params.bvn;
+            var id = params.id;
+            delete params.id;
             // console.log("pramssssss delete", params);
 
-            return _rave.request(`v2/kyc/bvn/${BVN}`, params)
+            return _rave.request(`v2/merchant/settlement/${id}`, params)
         })
         .then(response => {
 
@@ -60,4 +64,5 @@ function service(data, _rave) {
 }
 service.morxspc = spec;
 module.exports = service;
+
 

@@ -1,10 +1,14 @@
 var morx = require('morx');
 var q = require('q');
 
-var spec = morx.spec()
 
-    // .build('secret_key', 'required:true, eg:USD')
-    .build('id', 'required:true, eg:USD')
+
+var spec = morx.spec()
+    .build('seckey', 'required:true, eg:FLWSECK_TEST-9e54889bc262062ffg6654a96152ce4f477f9-X')
+    .build('from', 'required:true, eg:2019:01:01')
+    .build('to', 'required:true, eg:2019:01:01')
+    .build('page', 'required:true, eg:20')
+    .build('subaccountid', 'required:true, eg:RS_F1EC5985C24D4SDHHFF88G72D3D')
 
     .end();
 
@@ -29,8 +33,8 @@ function service(data, _rave) {
 
 
             params.secret_key = _rave.getSecretKey();
-            params.method = "POST";
-            return _rave.request('/v2/services/virtualcards/get', params)
+            params.method = "GET";
+            return _rave.request('/v2/merchant/settlements', params)
         })
         .then(response => {
 
@@ -45,9 +49,11 @@ function service(data, _rave) {
         })
 
     return d.promise;
-    
+
 
 
 }
 service.morxspc = spec;
 module.exports = service;
+
+
