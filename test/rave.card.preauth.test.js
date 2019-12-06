@@ -41,13 +41,13 @@ describe("#Rave Preauth service test", function(){
                 "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
             }
             preauthInstance.preauth(payload).then(resp => {
-                console.log("preauth transaction: ", resp.body);
+                // console.log("preauth transaction: ", resp.body);
 
                 if (resp.statusCode == 200) {
                     done();
                 }
             }).catch( function(err) {
-                console.log(err.message.body);
+                // console.log(err.message.body);
                 done(err);
             })
             //  expect(result).to.eventually.have.property('statusCode', '200').notify(done);
