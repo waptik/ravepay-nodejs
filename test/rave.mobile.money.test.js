@@ -52,8 +52,7 @@ describe("#Rave Mobile Money Test", function () {
             // return resp.body;
             return expect(resp.data).to.have.deep.property('paymentType', 'mobilemoneygh');
 
-            // });
-
+           
 
             // expect(result).to.eventually.have.deep.property('paymentType', 'mobilemoneygh').notify(done)
             // console.log(response)
