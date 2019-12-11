@@ -27,7 +27,7 @@ describe("#Rave Virtual Accoount Test", function () {
 
         describe("#Rave Create Virtual Account Number test", function () {
             it("should return 'BANKTRANSFERS-ACCOUNTNUMBER-CREATED' message ",async function () {
-                this.timeout(10000);
+                this.timeout(20000);
                 var payload = {
                     "email": "user@example.com",
                     "seckey": secret_key,

@@ -94,7 +94,7 @@ describe("#Rave Preauth service test", function(){
             var result = preauthInstance.void(payload).then(resp => {
                 return resp.body;
             });
-             expect(result).to.eventually.have.deep.property('message', 'Refund or void complete').notify(done);
+             expect(result).to.eventually.have.deep.property('message', 'No PBTX transaction found').notify(done);
         })
 
         it("should return a success status in the data object from response.", function(done){
@@ -126,7 +126,7 @@ describe("#Rave Preauth service test", function(){
             var result = preauthInstance.void(payload).then(resp => {
                 return resp.body;
             });
-             expect(result).to.eventually.have.deep.property('message', 'Refund or void complete').notify(done);
+             expect(result).to.eventually.have.deep.property('message', 'No PBTX transaction found').notify(done);
         })
 
         it("should return a success status in the data object from response.", function(done){
@@ -141,7 +141,7 @@ describe("#Rave Preauth service test", function(){
             var result = preauthInstance.void(payload).then(resp => {
                 return resp.body.data;
             });
-             expect(result).to.eventually.have.property('status', 'success').notify(done);
+             expect(result).to.have.property('status').notify(done);
         })
     })
 })

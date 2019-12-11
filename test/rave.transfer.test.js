@@ -25,7 +25,7 @@ describe("#Rave Transfer test", function() {
 
     describe("#Rave initiate Transfer leg test", function () {
 
-        it("should return a status success response", function(done) {
+        it("should return a status success response",async function() {
             this.timeout(10000);
             
             var payload = {

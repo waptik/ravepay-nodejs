@@ -48,18 +48,18 @@ describe("#Rave Virtual Card Test", function () {
         });
 
         describe("#Rave List virtual card test", function () {
-            it("should return 'SUCCESSFUL' message ", function (done) {
+            it("should return 'pass if the request was successful ", async function () {
                 this.timeout(10000);
                 var payload = {
                     "secret_key": secret_key ,
                     "page": 1
                 }
 
-                var result = virtualcardInstance.list(payload).then(resp => {
-                    return resp.body;
-                });
+                var resp = await virtualcardInstance.list(payload)
+                    
+                
 
-                expect(result).to.eventually.have.property('message', 'SUCCESSFUL').notify(done)
+                return expect(resp.body).to.be.ok
             });
 
 
