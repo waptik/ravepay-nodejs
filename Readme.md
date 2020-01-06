@@ -1,4 +1,4 @@
-# Ravepay Nodejs Library v1.0.0
+# Ravepay Nodejs Library v1.0.0.
 
 ## Ravepay Services exposed by the library
 
@@ -13,7 +13,7 @@
 - Payment Plan
 - Card PreAuthorization
 
-For more information on the services listed above, visit the [Ravepay website](http://rave.flutterwave.com/)
+For more information on the services listed above, visit the [Ravepay website](http://rave.flutterwave.com/).
 
 ## How to use
 
