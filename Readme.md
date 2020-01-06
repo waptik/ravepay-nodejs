@@ -1,4 +1,4 @@
-# Ravepay Nodejs Library v1.0.0.
+# Ravepay Nodejs Library v1.0.0
 
 ## Ravepay Services exposed by the library
 
