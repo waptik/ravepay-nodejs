@@ -12,6 +12,8 @@
 - Subscription
 - Payment Plan
 - Card PreAuthorization
+- Bills Payment
+- Moibile money (Mpesa, Uganda, Ghana, Zambia, Francophone Africa, Rwanda)
 
 For more information on the services listed above, visit the [Ravepay website](http://rave.flutterwave.com/)
 
@@ -27,26 +29,26 @@ For more information on the services listed above, visit the [Ravepay website](h
 
  
 ```
-var Ravepay = require('ravepay');
+const Ravepay = require('ravepay');
 
-var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTION_FLAG);
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTION_FLAG);
 ```
 
 If you pass true as the value for PRODUCTION_FLAG, the library will use the production url as the base for all calls. Otherwise it will use the staging base url;
 
 ```
-var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTION_FLAG); //Base url is 'https://ravesandboxapi.flutterwave.com'
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTION_FLAG); //Base url is 'https://ravesandboxapi.flutterwave.com'
 
-var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, true); //Base url is 'http://api.ravepay.co'
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, true); //Base url is 'http://api.ravepay.co'
 
 ```
 
 ### Card Charge
 
 ```javascript
-var Ravepay = require('ravepay');
+const Ravepay = require('ravepay');
 
-var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
 rave.Card.charge(
     {
@@ -88,9 +90,10 @@ rave.Card.charge(
 ### Tokenized Charge
 
 ```javascript
-var Ravepay = require('ravepay');
 
-var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
 rave.TokenCharge.card({
    "currency":"NGN",
@@ -166,9 +169,9 @@ This is called to start a transfer. The payload should contain the following car
 
 
 ```javascript
-var Ravepay = require('ravepay');
+const Ravepay = require('ravepay');
 
-var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
 rave.Transfer.initiate(
     {
@@ -389,9 +392,9 @@ This is used to create and manage subaccounts
 This function helps you to create a subaccount on rave.
 
 ```javascript
-var Ravepay = require('ravepay');
+const Ravepay = require('ravepay');
 
-var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
 rave.Subaccount.create(
     {
@@ -548,9 +551,10 @@ A sample response is seen below:
 This function allows you to list all the payment plans  on an account.
 
 ```javascript
-var Ravepay = require('ravepay');
+const Ravepay = require('ravepay');
 
-var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
 
 rave.Paymentplan.list() 
     .then(resp => {
@@ -634,9 +638,9 @@ rave.Paymentplan.edit(
 This function allows you to list all subscriptions on a merchant account.
 
 ```javascript
-var Ravepay = require('ravepay');
+const Ravepay = require('ravepay');
 
-var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
 rave.Subscription.list() 
     .then(resp => {
@@ -698,3 +702,263 @@ rave.Subscription.activate(
     
 })
 ```
+
+
+### Bills payment 
+
+Rave allows merchants to re-sell bill payment services such as airtime payments in Nigeria, Ghana and the US and DSTV payment in Nigeria and Ghana.
+
+### ```.bills()```
+This function allows you to make bills payment (DStv, GOTV, Remita, Airtime etc.)
+
+```javascript
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+
+
+rave.BillsPayment.bills({
+  "secret_key": "<YOUR SECRET KEY>",
+  "service": "fly_buy",
+  "service_method": "post",
+  "service_version": "v1",
+  "service_channel": "rave",
+  "service_payload": {
+    "Country": "NG",
+    "CustomerId": "+23490803840303",
+    "Reference": "9300049404444",
+    "Amount": 500,
+    "RecurringType": 0,
+    "IsAirtime": true,
+    "BillerName": "AIRTIME"
+  }
+}).then(resp => {
+    console.log(resp.body);
+    
+}).catch(err => {
+    console.log(err);
+    
+})
+
+```
+
+
+### Returns
+
+```javascript
+
+{
+    "status": "success",
+    "message": "SERVICE-RESPONSE",
+    "data": {
+        "MobileNumber": "+23490803840303",
+        "Amount": 500,
+        "Network": "9MOBILE",
+        "TransactionReference": "CF-FLYAPI-20200218112625677823",
+        "PaymentReference": "BPUSSD1582025186783879",
+        "BatchReference": null,
+        "ExtraData": null,
+        "Status": "success",
+        "Message": "Bill Payment was completed successfully",
+        "Reference": null
+    }
+}
+```
+### Mobile money
+This page describes how to collect payments via mobile money.
+
+### .ghana()
+This function allows you to accept payments using the Ghana mobile money method.
+
+```javascript
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.MobileMoney.ghana({
+  "PBFPubKey": "FLWPUBK-4e581ebf8372cd691203b27227e2e3b8-X",
+  "currency": "GHS",
+  "payment_type": "mobilemoneygh",
+  "country": "GH",
+  "amount": "50",
+  "email": "user@example.com",
+  "phonenumber": "054709929220",
+  "network": "MTN",
+  "firstname": "temi",
+  "lastname": "desola",
+  "voucher": "128373", // only needed for Vodafone users.
+  "IP": "355426087298442",
+  "txRef": "MC-" + Date.now(),
+  "orderRef": "MC_" + Date.now(),
+  "is_mobile_money_gh": 1,
+  "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
+  "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
+});
+
+```
+
+### .mpesa()
+This function allows you to accept payments using Mpesa (KES) mobile money method.
+
+```javascript
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.MobileMoney.mpesa({
+    "PBFPubKey": "FLWPUBK-7adb6177bd71dd43c2efa3f1229e3b7f-X",
+    "currency": "KES",
+    "country": "KE",
+    "amount": "100",
+    "phonenumber": "0926420185",
+    "email": "user@exampe",
+    "firstname": "jsksk",
+    "lastname": "ioeoe",
+    "IP": "40.14.290",
+    "narration": "funds payment",
+    "txRef": "jw-222",
+    "meta": [{metaname: "extra info", metavalue: "a pie"}],
+    "device_fingerprint": "89191918hgdgdg99191", //(optional)
+    "payment_type": "mpesa",
+    "is_mpesa": "1",
+  	"is_mpesa_lipa": 1
+});
+
+```
+
+### .zambia ()
+This function allows you to accept payments using Zambia mobile money method.
+
+**MTN is the only available network at the moment.**
+
+```javascript
+//Pass currency as ZMW and country as NG
+
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.MobileMoney.zambia({
+  "PBFPubKey": "FLWPUBK-4e581ebf8372cd691203b27227e2e3b8-X",
+  "currency": "ZMW",
+  "payment_type": "mobilemoneyzambia",
+  "country": "NG",
+  "amount": "50",
+  "email": "user@example.com",
+  "phonenumber": "054709929220",
+  "network": "MTN",
+  "firstname": "temi",
+  "lastname": "desola",
+  "IP": "355426087298442",
+  "txRef": "MC-" + Date.now(),
+  "orderRef": "MC_" + Date.now(),
+  "is_mobile_money_ug": 1,
+  "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
+  "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
+});
+
+```
+
+### .uganda()
+This function allows you to accept payments using Uganda mobile money method.
+
+```javascript
+//pass currency as UGX and country as NG
+
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.MobileMoney.uganda({
+  "PBFPubKey": "FLWPUBK-4e581ebf8372cd691203b27227e2e3b8-X",
+  "currency": "UGX",
+  "payment_type": "mobilemoneyuganda",
+  "country": "NG",
+  "amount": "50",
+  "email": "user@example.com",
+  "phonenumber": "054709929220",
+  "network": "UGX",
+  "firstname": "temi",
+  "lastname": "desola",
+  "IP": "355426087298442",
+  "txRef": "MC-" + Date.now(),
+  "orderRef": "MC_" + Date.now(),
+  "is_mobile_money_ug": 1,
+  "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
+  "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
+});
+
+```
+### .rwanda()
+This function allows you to accept payments using Rwanda mobile money method.
+
+```javascript
+//Pass currency as RWF and country as NG.
+
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.MobileMoney.rwanda({
+  "PBFPubKey": "FLWPUBK-4e581ebf8372cd691203b27227e2e3b8-X",
+  "currency": "RWF",
+  "payment_type": "mobilemoneygh",
+  "country": "NG",
+  "amount": "50",
+  "email": "user@example.com",
+  "phonenumber": "054709929220",
+  "network": "RWF",
+  "firstname": "temi",
+  "lastname": "desola",
+  "IP": "355426087298442",
+  "txRef": "MC-" + Date.now(),
+  "orderRef": "MC_" + Date.now(),
+  "is_mobile_money_gh": 1,
+  "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
+  "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
+});
+
+```
+
+### .francophone()
+Rave currently allows merchants to collect payments in Francophone Africa via mobile money from **all networks.**
+
+Rave facilitates mobile money payments for The West African CFA franc (French: franc CFA; Portuguese: franco CFA or simply franc, ISO 4217 code: XOF), for Ivory Coast, Mali and Senegal.
+
+For the Central African CFA franc (French: franc CFA or simply franc, ISO 4217 code: XAF), mobile money payments are accepted for Cameroon.
+
+
+```javascript
+//pass currency as XAF or XOF
+
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.MobileMoney.francophone({
+  "PBFPubKey": "FLWPUBK-4e581ebf8372cd691203b27227e2e3b8-X",
+  "currency": "XAF",
+  "country":"NG",
+  "payment_type":"mobilemoneyfranco",
+  "amount": "150",
+  "email": "user@example.com",
+  "phonenumber": "054709929220",
+  "firstname": "temi",
+  "lastname": "desola",
+  "IP": "355426087298442",
+  "txRef": "MC-" + Date.now(),
+  "orderRef": "MC_" + Date.now(),
+  "is_mobile_money_franco": 1,
+  "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
+});
+
+```
+
+
+
+
+
+
+
+

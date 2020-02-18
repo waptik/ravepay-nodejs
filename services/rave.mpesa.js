@@ -4,7 +4,7 @@ var charge = require('./rave.charge');
 
 
 var spec = morx.spec()
-    .build('currency', 'required:true, eg:KES')
+    .build('currency', 'required:false, eg:KES')
     .build('country', 'required:true, eg:KE')
     .build('amount', 'required:true, eg:50')
     .build('phonenumber', 'required:true, eg:054709929220')

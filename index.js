@@ -46,7 +46,7 @@ var Rave = function(public_key, public_secret, base_url_or_production_flag) {
   this.VirtualAccount = new virtualAccount();
   this.Refund = new refund();
   this.VerifyTransaction = new verifyTransaction();
-  this.Bills - new billsPayment();
+  this.BillsPayment = new billsPayment();
 
   this.getIntegrityHash = function(data) {
     return ravebase.getIntegrityHash(data);
