@@ -14,6 +14,8 @@
 - Card PreAuthorization
 - Bills Payment
 - Moibile money (Mpesa, Uganda, Ghana, Zambia, Francophone Africa, Rwanda)
+- BVN Validation
+- Verfiy transaction
 
 For more information on the services listed above, visit the [Ravepay website](http://rave.flutterwave.com/)
 
@@ -954,7 +956,34 @@ rave.MobileMoney.francophone({
 });
 
 ```
+### BVN Verification
+This shows how to validate your customer's BVN.
+BVN Validation is only available for Nigerian customers. It allows you verify BVN supplied by a customer and can also be used for customer KYC methods such as; validating date of birth supplied by the customer, validating the mobile number, first name & last name etc.
 
+```javascript
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.Bvn.verification(
+{"bvn":"12345678901"}
+);
+
+```
+
+### Transaction verification.
+This shows how to verify transactions using your own transaction reference.
+
+```javascript
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+rave.verifyTransaction.verify({
+	"txref": "MC-09182829",
+}, rave);
+
+```
 
 
 

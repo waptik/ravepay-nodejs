@@ -43,10 +43,10 @@ var Rave = function(public_key, public_secret, base_url_or_production_flag) {
   this.MobileMoney = new mobileMoney(ravebase);
   this.VirtualCards = new virtualcards(ravebase);
   this.Bvn = new bvn(ravebase);
-  this.VirtualAccount = new virtualAccount();
-  this.Refund = new refund();
-  this.VerifyTransaction = new verifyTransaction();
-  this.BillsPayment = new billsPayment();
+  this.VirtualAccount = new virtualAccount(ravebase);
+  this.Refund = new refund(ravebase);
+  this.VerifyTransaction = new verifyTransaction(ravebase);
+  this.BillsPayment = new billsPayment(ravebase);
 
   this.getIntegrityHash = function(data) {
     return ravebase.getIntegrityHash(data);
