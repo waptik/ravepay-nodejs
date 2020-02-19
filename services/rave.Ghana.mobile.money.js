@@ -6,7 +6,7 @@ var spec = morx
   .spec()
   .build(
     "PBFPubKey",
-    "required:true, eg:FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X"
+    "required:false, eg:FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X"
   )
   .build("currency", "required:true, eg:GHS")
   .build("country", "required:true, eg:GH")

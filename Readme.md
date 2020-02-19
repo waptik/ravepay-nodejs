@@ -770,17 +770,19 @@ rave.BillsPayment.bills({
 ### Mobile money
 This page describes how to collect payments via mobile money.
 
-### .ghana()
+### Ghana
 This function allows you to accept payments using the Ghana mobile money method.
 
 ```javascript
+
 const Ravepay = require('ravepay');
 
-const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
-rave.MobileMoney.ghana({
-  "PBFPubKey": "FLWPUBK-4e581ebf8372cd691203b27227e2e3b8-X",
-  "currency": "GHS",
+const Gh_mobilemoney =  async ()=>{
+
+    const payload = {
+   "currency": "GHS",
   "payment_type": "mobilemoneygh",
   "country": "GH",
   "amount": "50",
@@ -796,11 +798,23 @@ rave.MobileMoney.ghana({
   "is_mobile_money_gh": 1,
   "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
   "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
-});
+    }
+    try {
+       const response =  await rave.MobileMoney.ghana(payload, rave)
+       console.log(response);
+    } catch (error) {
+        console.log(error)
+    }                            
+   
+}
+
+
+Gh_mobilemoney();
+
 
 ```
 
-### .mpesa()
+### Mpesa
 This function allows you to accept payments using Mpesa (KES) mobile money method.
 
 ```javascript
@@ -808,13 +822,14 @@ const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
-rave.MobileMoney.mpesa({
-    "PBFPubKey": "FLWPUBK-7adb6177bd71dd43c2efa3f1229e3b7f-X",
+const callMpesa =  async ()=>{
+
+    const payload = {
     "currency": "KES",
     "country": "KE",
     "amount": "100",
     "phonenumber": "0926420185",
-    "email": "user@exampe",
+    "email": "user@example.com",
     "firstname": "jsksk",
     "lastname": "ioeoe",
     "IP": "40.14.290",
@@ -825,11 +840,22 @@ rave.MobileMoney.mpesa({
     "payment_type": "mpesa",
     "is_mpesa": "1",
   	"is_mpesa_lipa": 1
-});
+    }
+    try {
+       const response =  await rave.MobileMoney.mpesa(payload, rave)
+       console.log(response);
+    } catch (error) {
+        console.log(error)
+    }                            
+   
+}
+
+
+callMpesa();
 
 ```
 
-### .zambia ()
+### Zambia
 This function allows you to accept payments using Zambia mobile money method.
 
 **MTN is the only available network at the moment.**
@@ -839,11 +865,12 @@ This function allows you to accept payments using Zambia mobile money method.
 
 const Ravepay = require('ravepay');
 
-const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
-rave.MobileMoney.zambia({
-  "PBFPubKey": "FLWPUBK-4e581ebf8372cd691203b27227e2e3b8-X",
-  "currency": "ZMW",
+const zmw_mobilemoney=  async ()=>{
+
+    const payload = {
+   "currency": "ZMW",
   "payment_type": "mobilemoneyzambia",
   "country": "NG",
   "amount": "50",
@@ -857,12 +884,23 @@ rave.MobileMoney.zambia({
   "orderRef": "MC_" + Date.now(),
   "is_mobile_money_ug": 1,
   "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
-  "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
-});
+  "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"  
+    }
+    try {
+       const response =  await rave.MobileMoney.zambia(payload, rave)
+       console.log(response);
+    } catch (error) {
+        console.log(error)
+    }                            
+   
+}
+
+
+zmw_mobilemoney();
 
 ```
 
-### .uganda()
+### Uganda
 This function allows you to accept payments using Uganda mobile money method.
 
 ```javascript
@@ -870,11 +908,12 @@ This function allows you to accept payments using Uganda mobile money method.
 
 const Ravepay = require('ravepay');
 
-const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
-rave.MobileMoney.uganda({
-  "PBFPubKey": "FLWPUBK-4e581ebf8372cd691203b27227e2e3b8-X",
-  "currency": "UGX",
+const Ugx_mob_money=  async ()=>{
+
+    const payload = {
+   "currency": "UGX",
   "payment_type": "mobilemoneyuganda",
   "country": "NG",
   "amount": "50",
@@ -889,10 +928,22 @@ rave.MobileMoney.uganda({
   "is_mobile_money_ug": 1,
   "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
   "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
-});
+    }
+    try {
+       const response =  await rave.MobileMoney.uganda(payload, rave)
+       console.log(response);
+    } catch (error) {
+        console.log(error)
+    }                            
+   
+}
+
+
+Ugx_mob_money();
+
 
 ```
-### .rwanda()
+### Rwanda
 This function allows you to accept payments using Rwanda mobile money method.
 
 ```javascript
@@ -900,10 +951,11 @@ This function allows you to accept payments using Rwanda mobile money method.
 
 const Ravepay = require('ravepay');
 
-const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
-rave.MobileMoney.rwanda({
-  "PBFPubKey": "FLWPUBK-4e581ebf8372cd691203b27227e2e3b8-X",
+const rwn_mobilemoney=  async ()=>{
+
+    const payload = {
   "currency": "RWF",
   "payment_type": "mobilemoneygh",
   "country": "NG",
@@ -919,7 +971,18 @@ rave.MobileMoney.rwanda({
   "is_mobile_money_gh": 1,
   "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
   "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
-});
+   }
+    try {
+       const response =  await rave.MobileMoney.rwanda(payload, rave)
+       console.log(response);
+    } catch (error) {
+        console.log(error)
+    }                            
+   
+}
+
+
+rwn_mobilemoney();
 
 ```
 
@@ -936,14 +999,13 @@ For the Central African CFA franc (French: franc CFA or simply franc, ISO 4217 c
 
 const Ravepay = require('ravepay');
 
-const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
-rave.MobileMoney.francophone({
-  "PBFPubKey": "FLWPUBK-4e581ebf8372cd691203b27227e2e3b8-X",
+const franco_mobilemoney=  async ()=>{
+
+    const payload = {
   "currency": "XAF",
-  "country":"NG",
-  "payment_type":"mobilemoneyfranco",
-  "amount": "150",
+  "amount": "50",
   "email": "user@example.com",
   "phonenumber": "054709929220",
   "firstname": "temi",
@@ -953,7 +1015,18 @@ rave.MobileMoney.francophone({
   "orderRef": "MC_" + Date.now(),
   "is_mobile_money_franco": 1,
   "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
-});
+   }
+    try {
+       const response =  await rave.MobileMoney.francophone(payload, rave)
+       console.log(response);
+    } catch (error) {
+        console.log(error)
+    }                            
+   
+}
+
+
+franco_mobilemoney();
 
 ```
 ### BVN Verification
@@ -965,10 +1038,22 @@ const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
-rave.Bvn.verification(
-{"bvn":"12345678901"}
-);
+const callBvn =  async () => {
 
+    const payload = {
+        bvn:"12345678901"
+    }
+    try {
+       const response =  await rave.Bvn.verification(payload, rave)
+       console.log(response);
+    } catch (error) {
+        console.log(error)
+    }                            
+   
+}
+
+
+callBvn();
 ```
 
 ### Transaction verification.
@@ -977,12 +1062,24 @@ This shows how to verify transactions using your own transaction reference.
 ```javascript
 const Ravepay = require('ravepay');
 
-const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay("FLWPUBK_TEST-xxxxxxxxx-X", "FLWSECK_TEST-9xxxxxx-X",false);
 
-rave.verifyTransaction.verify({
-	"txref": "MC-09182829",
-}, rave);
 
+const callVerify =  async (ref) => {
+
+    const payload = {
+        txref:ref
+    }
+    try {
+       const response =  await rave.VerifyTransaction.verify(payload, rave)
+       console.log(response);
+    } catch (error) {
+        console.log(error)
+    }                            
+   
+}
+
+callVerify("rave-123456");
 ```
 
 
