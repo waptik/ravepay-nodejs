@@ -7,7 +7,7 @@ var spec = morx
 
   .build(
     "secret_key",
-    "required:true, eg:FLWESCK-e634d14d9ded04eaf05d5b63a0a06d2f-X"
+    "required:false, eg:FLWESCK-e634d14d9ded04eaf05d5b63a0a06d2f-X"
   )
   .build("service", "required:true, eg:fly_buy")
   .build("service_method", "required:true, eg:get")

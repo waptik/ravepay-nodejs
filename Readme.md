@@ -16,6 +16,9 @@
 - Moibile money (Mpesa, Uganda, Ghana, Zambia, Francophone Africa, Rwanda)
 - BVN Validation
 - Verfiy transaction
+- Virtual Cards
+- Virtual account number
+
 
 For more information on the services listed above, visit the [Ravepay website](http://rave.flutterwave.com/)
 
@@ -706,7 +709,7 @@ rave.Subscription.activate(
 ```
 
 
-### Bills payment 
+## Bills payment 
 
 Rave allows merchants to re-sell bill payment services such as airtime payments in Nigeria, Ghana and the US and DSTV payment in Nigeria and Ghana.
 
@@ -716,32 +719,35 @@ This function allows you to make bills payment (DStv, GOTV, Remita, Airtime etc.
 ```javascript
 const Ravepay = require('ravepay');
 
-const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
 
+const callBills =  async () =>{
 
-rave.BillsPayment.bills({
-  "secret_key": "<YOUR SECRET KEY>",
-  "service": "fly_buy",
-  "service_method": "post",
-  "service_version": "v1",
-  "service_channel": "rave",
-  "service_payload": {
-    "Country": "NG",
-    "CustomerId": "+23490803840303",
-    "Reference": "9300049404444",
-    "Amount": 500,
-    "RecurringType": 0,
-    "IsAirtime": true,
-    "BillerName": "AIRTIME"
-  }
-}).then(resp => {
-    console.log(resp.body);
-    
-}).catch(err => {
-    console.log(err);
-    
-})
+    const payload = {
+        "service": "fly_history",
+        "service_method": "post",
+        "service_version": "v1",
+        "service_channel": "rave",
+        "service_payload": {
+          "FromDate": "2018-08-01",
+          "ToDate": "2018-08-27",
+          "PageSize": 20,
+          "PageIndex": 0,
+          "Reference": "+233494850059"
+        }
+    }
+    try {
+       const response =  await rave.BillsPayment.bills(payload, rave)
+       console.log(response);
+    } catch (error) {
+        console.log(error)
+    }                            
+   
+}
+
+
+callBills();
 
 ```
 
@@ -767,10 +773,10 @@ rave.BillsPayment.bills({
     }
 }
 ```
-### Mobile money
+## Mobile money
 This page describes how to collect payments via mobile money.
 
-### Ghana
+### ```Ghana```
 This function allows you to accept payments using the Ghana mobile money method.
 
 ```javascript
@@ -814,7 +820,7 @@ Gh_mobilemoney();
 
 ```
 
-### Mpesa
+### ```Mpesa```
 This function allows you to accept payments using Mpesa (KES) mobile money method.
 
 ```javascript
@@ -855,7 +861,7 @@ callMpesa();
 
 ```
 
-### Zambia
+### ```Zambia```
 This function allows you to accept payments using Zambia mobile money method.
 
 **MTN is the only available network at the moment.**
@@ -900,7 +906,7 @@ zmw_mobilemoney();
 
 ```
 
-### Uganda
+### ```Uganda```
 This function allows you to accept payments using Uganda mobile money method.
 
 ```javascript
@@ -943,7 +949,7 @@ Ugx_mob_money();
 
 
 ```
-### Rwanda
+### ```Rwanda``
 This function allows you to accept payments using Rwanda mobile money method.
 
 ```javascript
@@ -986,7 +992,7 @@ rwn_mobilemoney();
 
 ```
 
-### .francophone()
+### ```.francophone()```
 Rave currently allows merchants to collect payments in Francophone Africa via mobile money from **all networks.**
 
 Rave facilitates mobile money payments for The West African CFA franc (French: franc CFA; Portuguese: franco CFA or simply franc, ISO 4217 code: XOF), for Ivory Coast, Mali and Senegal.
@@ -1029,14 +1035,14 @@ const franco_mobilemoney=  async ()=>{
 franco_mobilemoney();
 
 ```
-### BVN Verification
+## BVN Verification
 This shows how to validate your customer's BVN.
 BVN Validation is only available for Nigerian customers. It allows you verify BVN supplied by a customer and can also be used for customer KYC methods such as; validating date of birth supplied by the customer, validating the mobile number, first name & last name etc.
 
 ```javascript
 const Ravepay = require('ravepay');
 
-const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
 const callBvn =  async () => {
 
@@ -1056,7 +1062,7 @@ const callBvn =  async () => {
 callBvn();
 ```
 
-### Transaction verification.
+## Transaction verification.
 This shows how to verify transactions using your own transaction reference.
 
 ```javascript
@@ -1082,9 +1088,332 @@ const callVerify =  async (ref) => {
 callVerify("rave-123456");
 ```
 
+## Virtual Cards
+The Flutterwave API allows you to create virtual cards that can be used online to make purchases and complete payments.
+
+###```.create()```
+This describes how to create a virtual card on Rave.
+
+**The currency the card would be denominated in, possible values are NGN and USD only.**
 
 
+```javascript
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+const create_Vcard = async ()=> {
+	const payload = {
+		currency: "NGN",
+		amount: "100",
+		billing_name: "Mohammed Lawal",
+		billing_address: "DREAM BOULEVARD",
+		billing_city: "ADYEN",
+		billing_state: "NEW LANGE",
+		billing_postal_code: "293094",
+		billing_country: "US",
+		callback_url: "https://your-callback-url.com/"
+	};
+	try {
+		const response = await rave.VirtualCards.create(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+create_Vcard();
+
+```
+
+####Response
+```
+body: {
+    status: 'success',
+    message: 'Please note that this card can ONLY be used on RAVE merchant sites. Contact support for more information',
+    data: {
+      id: 'a790657b-f594-45df-8970-3baa10d3a47b',
+      AccountId: 78446,
+      amount: '100.00',
+      currency: 'NGN',
+      card_hash: 'a790657b-f594-45df-8970-3baa10d3a47b',
+      cardpan: '5366132747605184',
+      maskedpan: '536613*******5184',
+      city: 'Lekki',
+      state: 'Lagos',
+      address_1: '19, Olubunmi Rotimi',
+      address_2: null,
+      zip_code: '23401',
+      cvv: '802',
+      expiration: '2023-02',
+      send_to: null,
+      bin_check_name: null,
+      card_type: 'mastercard',
+      name_on_card: 'Mohammed Lawal',
+      date_created: '2020-02-19T14:09:38.0788249+00:00',
+      is_active: true,
+      callback_url: null
+    }
+  }
+
+```
+###````.list()```
+This allows you to list all virtual cards on your profile.
 
 
+```javascript
+const Ravepay = require('ravepay');
 
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+const list_Vcard = async ()=> {
+	const payload = {
+		page:1
+	};
+	try {
+		const response = await rave.VirtualCards.list(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+list_Vcard();
+```
+
+
+### ```.get()```
+This allows you fetch a virtual card on your profile.
+
+**id: This is id returned for the card. You can pick this up from the [Create a Virtual Card API response.](https://developer.flutterwave.com/v2.0/reference#create-a-virtual-card)**
+
+```
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+const get_Vcard = async ()=> {
+	const payload = {
+		id:"660bae3b-333c-410f-b283-2d181587247f"
+	};
+	try {
+		const response = await rave.VirtualCards.get(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+get_Vcard();
+```
+
+###```.terminate()```
+This describes how to terminate a virtual card on your profile.
+
+```
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+const terminate_Vcard = async ()=> {
+	const payload = {
+		id:"660bae3b-333c-410f-b283-2d181587247f"
+	};
+	try {
+		const response = await rave.VirtualCards.terminate(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+terminate_Vcard();
+```
+### ```.fund()```
+This allows you to fund an existing virtual card.
+
+```
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+const fund_Vcard = async ()=> {
+	const payload = {
+	id: "e9ca13bd-36b4-4691-9ee6-e23d7f2e196c",
+	amount: 2000,
+	debit_currency: "NGN",
+	};
+	try {
+		const response = await rave.VirtualCards.fund(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+fund_Vcard();
+```
+
+### ```.fetchTransactions()```
+This API allows you to fetch transactions by date range on a single card.
+
+```
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+const fetch_trans_Vcard = async ()=> {
+	const payload = {
+	   FromDate: "2019-02-13",
+      ToDate: "2020-12-21",
+      PageIndex: "0",
+      PageSize: "20",
+      CardId: "e9ca13bd-36b4-4691-9ee6-e23d7f2e196c",
+	};
+	try {
+		const response = await rave.VirtualCards.fetchTransactions(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+fetch_trans_Vcard();
+```
+### ```.withdraw ()```
+Withdraw existing funds from a customer's card using the withdraw API.
+
+```
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+const withdraw_funds = async ()=> {
+	const payload = {
+	  amount:100,
+      card_id: "e9ca13bd-36b4-4691-9ee6-e23d7f2e196c",
+	};
+	try {
+		const response = await rave.VirtualCards.withdraw(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+withdraw_funds();
+```
+
+### ```.freeze() and unfreeze()```
+You can freeze and unfreeze the virtual card with API.
+
+**Status_action: This is the action to perform on the card, possible parameters are block and unblock.**
+
+###```.freeze()```
+
+```
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+const freeze_card = async ()=> {
+	const payload = {
+	 status_action:"block",
+      card_id: "e9ca13bd-36b4-4691-9ee6-e23d7f2e196c",
+	};
+	try {
+		const response = await rave.VirtualCards.freeze(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+freeze_card();
+```
+
+###```.unfreeze()```
+
+```
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+const unfreeze_card = async ()=> {
+	const payload = {
+	 status_action:"unblock",
+      card_id: "e9ca13bd-36b4-4691-9ee6-e23d7f2e196c",
+	};
+	try {
+		const response = await rave.VirtualCards.unfreeze(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+unfreeze_card();
+```
+
+## Virtual Account Numbers
+This shows how to create an account number for customers to pay you with using the pay with bank transfer feature.
+
+The virtual accounts created are customer-specific. Transfers to account numbers you create here will show up as customer payments in your Rave dashboard.
+
+**is_permanent: This allows you create a static account number i.e. it doesn't expire.**
+
+### Permanent Account
+
+```
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+onst create_virtual_account = async ()=> {
+	const payload = {
+	 email: "user@example.com",
+	is_permanent: true
+	};
+	try {
+		const response = await rave.VirtualAccount.accountNumber(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+create_virtual_account();
+
+
+```
+
+### Non-permanent Account
+
+**frequency:** This is the number of times a generated account number can receive payments. Represented as an Integer e.g. "frequency": 10 means the account can receive payments up to 10 times before expiring.
+
+**duration:** This is represented in days e.g. passing 2 means 2 days. It is the expiry date for the account number. Setting to 2 would mean you want the account number to exist for 2 days before expiring.**
+
+```
+const Ravepay = require('ravepay');
+
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+onst create_virtual_account = async ()=> {
+	const payload = {
+	email: "ade_temi@icloud.com",
+	frequency: 4,
+   duration: 4
+	};
+	try {
+		const response = await rave.VirtualAccount.accountNumber(payload, rave);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+create_virtual_account();
+
+
+```
 
