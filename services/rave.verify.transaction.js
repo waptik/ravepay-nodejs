@@ -4,7 +4,6 @@ var q = require('q');
 var spec = morx.spec()
     
     .build('txref', 'required:true, eg:FLW001286941')
-    .build('SECKEY', 'required:true, eg:FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X')
     .end();
     
 
@@ -28,7 +27,7 @@ function service(data, _rave) {
 
 
 
-            params.secret_key = _rave.getSecretKey();
+            params.SECKEY = _rave.getSecretKey();
             params.method = "POST";
             return _rave.request('/flwv3-pug/getpaidx/api/v2/verify', params)
         })

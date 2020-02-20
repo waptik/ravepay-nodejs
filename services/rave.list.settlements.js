@@ -5,10 +5,10 @@ var q = require('q');
 
 var spec = morx.spec()
     .build('seckey', 'required:true, eg:FLWSECK_TEST-9e54889bc262062ffg6654a96152ce4f477f9-X')
-    .build('from', 'required:true, eg:2019:01:01')
-    .build('to', 'required:true, eg:2019:01:01')
-    .build('page', 'required:true, eg:20')
-    .build('subaccountid', 'required:true, eg:RS_F1EC5985C24D4SDHHFF88G72D3D')
+    .build('from', 'required:false, eg:2019:01:01')
+    .build('to', 'required:false, eg:2019:01:01')
+    .build('page', 'required:false, eg:20')
+    .build('subaccountid', 'required:false, eg:RS_F1EC5985C24D4SDHHFF88G72D3D')
 
     .end();
 

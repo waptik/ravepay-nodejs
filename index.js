@@ -19,6 +19,9 @@ var virtualAccount = require("./lib/rave.virtualAccountNumber");
 var refund = require("./lib/rave.refund");
 var verifyTransaction = require("./lib/rave.verify.transaction");
 var billsPayment = require("./lib/rave.bills.payment");
+var settlement = require("./lib/rave.settlements");
+var ussd=require("./lib/rave.ussd");
+var ebills=require("./lib/rave.Ebills");
 
 var Rave = function(public_key, public_secret, base_url_or_production_flag) {
   var ravebase = new base(
@@ -47,7 +50,10 @@ var Rave = function(public_key, public_secret, base_url_or_production_flag) {
   this.Refund = new refund(ravebase);
   this.VerifyTransaction = new verifyTransaction(ravebase);
   this.BillsPayment = new billsPayment(ravebase);
-
+  this.Settlement = new settlement(ravebase);
+  this.USSD = new ussd(ravebase);
+  this.Ebills = new ebills(ravebase);
+  
   this.getIntegrityHash = function(data) {
     return ravebase.getIntegrityHash(data);
   };

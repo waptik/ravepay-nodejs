@@ -6,10 +6,7 @@ var q = require('q');
 
 var spec = morx.spec()
 
-    .build('id', 'required:false, eg:RS_F1EC5985C2XXXXXXXXECA6B72D3D')
-    .build('seckey', 'required:false, eg:FLWSECK_TEST-9e54889bc262062ffg6654a96152ce4f477f9-X')
-    .build('from', 'required:false, eg:2019:01:01')
-    .build('to', 'required:false, eg:2019:01:01')
+    .build('id', 'required:true, eg:RS_F1EC5985C2XXXXXXXXECA6B72D3D')
     .end();
 
 function service(data, _rave) {
