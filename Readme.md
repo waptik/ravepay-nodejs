@@ -1191,7 +1191,9 @@ This allows you fetch a virtual card on your profile.
 
 **id: This is id returned for the card. You can pick this up from the [Create a Virtual Card API response.](https://developer.flutterwave.com/v2.0/reference#create-a-virtual-card)**
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1211,10 +1213,12 @@ const get_Vcard = async ()=> {
 get_Vcard();
 ```
 
-###```.terminate()```
+### ```.terminate()```
 This describes how to terminate a virtual card on your profile.
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1236,7 +1240,9 @@ terminate_Vcard();
 ### ```.fund()```
 This allows you to fund an existing virtual card.
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1261,7 +1267,8 @@ fund_Vcard();
 ### ```.fetchTransactions()```
 This API allows you to fetch transactions by date range on a single card.
 
-```
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1287,7 +1294,9 @@ fetch_trans_Vcard();
 ### ```.withdraw ()```
 Withdraw existing funds from a customer's card using the withdraw API.
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1313,9 +1322,11 @@ You can freeze and unfreeze the virtual card with API.
 
 **Status_action: This is the action to perform on the card, possible parameters are block and unblock.**
 
-###```.freeze()```
+### ```.freeze()```
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1336,9 +1347,10 @@ const freeze_card = async ()=> {
 freeze_card();
 ```
 
-###```.unfreeze()```
+### ```.unfreeze()```
 
-```
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1368,7 +1380,9 @@ The virtual accounts created are customer-specific. Transfers to account numbers
 
 ### Permanent Account
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1428,7 +1442,8 @@ This pages shows how to List all settlements and how to fetch a particular trans
 ### ```.list()```
 List all settlements made to your bank account and your subaccounts.
 
-```
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1455,7 +1470,9 @@ call_list_settlement();
 ### ```.fetch()```
 List all settlements made to your bank account and your subaccounts.
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1488,7 +1505,9 @@ Rave allows you collect payments from your customers offline using USSD. With US
 
 **At the moment, banks available for USSD payments (and their numeric codes) are: Fidelity Bank (070), Guaranty Trust Bank (058), Keystone Bank (082), Sterling Bank (232), United Bank for Africa (033), Unity Bank (215), and Zenith Bank (057).**
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1527,14 +1546,16 @@ Ussd_charge();
 ## EBILLS
 This API allows you to create a new Ebills order and update the amount to be paid.
 
-###```.create()```
+### ```.create()```
 This function allows you to create a new Ebills order.
 
 **numberofunits:** Set the value to 1. It describes the number of items the customer is paying for.
 
 **currency**: The only available currency is ```NGN```
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1566,12 +1587,14 @@ ebills_create();
 
 ```
 
-###```.update()```
+### ```.update()```
 This API is used to update the amount to be paid. 
 
 **reference:** This is the reference returned in the create order endpoint as ```flwRef```.
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1595,13 +1618,15 @@ ebills_update();
 
 ```
 
-##MISC
+## MISC
 
 
-###```.exchange_rates()```
+### ```.exchange_rates()```
 Rave allows your convert currencies real time via api's to charge your customers in alternate currencies. See table below show possible exchange rates combination via the [API](https://developer.flutterwave.com/reference#exchange-rates)
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1631,10 +1656,12 @@ exchange_rates();
 
 ```
 
-###```.getBalance()```
+### ```.getBalance()```
 This allows you to get balances for ledger and available balance across all or select currencies.
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1660,10 +1687,12 @@ get_balance();
 ```
 
 
-###```.list_transactions()```
+### ```.list_transactions()```
 This helps you list all transactions on your account.
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1687,10 +1716,12 @@ get_list_of_transactions();
 
 ```
 
-###```.getFee()```
+### ```.getFee()```
 This allow you to get fee for a charged amount.
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
@@ -1713,10 +1744,12 @@ get_fee();
 
 ```
 
-###```.getBanks()```
+### ```.getBanks()```
 This page describes a list of banks that can be charged on rave.
 
-```
+
+```javascript
+
 const Ravepay = require('ravepay');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
