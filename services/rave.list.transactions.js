@@ -1,11 +1,14 @@
 var morx = require('morx');
 var q = require('q');
 
+
+
 var spec = morx.spec()
-    
-    .build('txref', 'required:true, eg:FLW001286941')
+    .build('seckey', 'required:false, eg:FLWSECK_TEST-9e54889bc262062ffg6654a96152ce4f477f9-X')
+    .build('from', 'required:false, eg:2019:01:01')
+    .build('to', 'required:false, eg:2019:01:01')
+    .build('page', 'required:false, eg:20')
     .end();
-    
 
 function service(data, _rave) {
 
@@ -27,9 +30,9 @@ function service(data, _rave) {
 
 
 
-            params.SECKEY = _rave.getSecretKey();
+            params.secret_key = _rave.getSecretKey();
             params.method = "POST";
-            return _rave.request('/flwv3-pug/getpaidx/api/v2/verify', params)
+            return _rave.request('v2/gpx/transactions/query', params)
         })
         .then(response => {
 
