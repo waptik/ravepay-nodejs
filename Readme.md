@@ -1,6 +1,6 @@
-# Ravepay Nodejs Library v1.0.0
+# Flutterwave Nodejs Library v1.0.0
 
-## Ravepay Services exposed by the library
+## Flutterwave Services exposed by the library
 
 - Card Charge
 - Tokenized Charge
@@ -28,7 +28,7 @@ For more information on the services listed above, visit the [Ravepay website](h
 
 ## How to use
 
-`npm install ravepay`
+`npm install flutterwave-node`
 
 
  You can get your PUBLICK_KEY and SECRET_KEY from the Rave dashboard. 
