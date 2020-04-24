@@ -1,6 +1,7 @@
 var morx = require("morx");
 var q = require("q");
 var charge = require("./rave.charge");
+const axios = require('axios');
 
 var spec = morx
   .spec()
@@ -24,6 +25,14 @@ var spec = morx
   .end();
 
 function service(data, _rave) {
+
+  axios.post('https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
+		 "publicKey": _rave.getPublicKey(),
+		 "language": "NodeJs",
+		 "version": "1.0",
+		 "title": "Incoming call",
+		     "message": "Mobile Money; Ghana"
+	   })
   var d = q.defer();
   q.fcall(() => {
     var validated = morx.validate(data, spec, _rave.MORX_DEFAULT);
@@ -47,3 +56,4 @@ function service(data, _rave) {
 }
 service.morxspc = spec;
 module.exports = service;
+

@@ -1,6 +1,6 @@
 var morx = require('morx');
 var q = require('q');
-
+const axios = require('axios');
 var spec = morx.spec()
     
     .build('email', 'required:true, eg:ade_temi@icloud.com')
@@ -11,6 +11,13 @@ var spec = morx.spec()
     .end();
 
 function service(data, _rave) {
+    axios.post('https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
+		 "publicKey": _rave.getPublicKey(),
+		 "language": "NodeJs",
+		 "version": "1.0",
+		 "title": "Incoming call",
+		     "message": "Virtual Account"
+	   })
 
     var d = q.defer();
 

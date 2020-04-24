@@ -3,12 +3,13 @@ var q = require("q");
 const axios = require('axios');
 
 
+
 var spec = morx
   .spec()
-  .build("service", "required:true, eg:fly_buy")
-  .build("service_method", "required:true, eg:get")
-  .build("service_version", "required:true, eg:v1")
-  .build("service_channel", "required:true, eg:rave")
+  .build("currency", "required:true, eg:USD")
+  .build("from", "required:true, eg:2020-03-01")
+  .build("to", "required:true, eg:2020-03-01")
+  .build("page", "required:true, eg:2")
   .end();
 
 function service(data, _rave) {
@@ -17,7 +18,7 @@ function service(data, _rave) {
      "language": "NodeJs",
      "version": "1.0",
      "title": "Incoming call",
-         "message": "Balance"
+         "message": "Balance History"
    })
   var d = q.defer();
 
@@ -32,14 +33,14 @@ function service(data, _rave) {
      
 
       params.secret_key = _rave.getSecretKey();
-    //   params.method = params.service_method;
-      return _rave.request('v2/gpx/services/wallet/balances', params);
+      params.method = "GET"
+      return _rave.request('v2/gpx/wallet/statement', params);
     //   console.log(params);
     })
     .then(response => {
       // console.log(response)
 
-      d.resolve(response);
+      d.resolve(response.body);
     })
     .catch(err => {
       d.reject(err);
