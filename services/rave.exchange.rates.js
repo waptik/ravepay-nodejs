@@ -1,14 +1,10 @@
 var morx = require("morx");
 var q = require("q");
+const axios = require('axios');
 
 
 var spec = morx
   .spec()
-
-//   .build(
-//     "secret_key",
-//     "required:false, eg:FLWESCK-e634d14d9ded04eaf05d5b63a0a06d2f-X"
-//   )
   .build("service", "required:true, eg:fly_buy")
   .build("service_method", "required:true, eg:get")
   .build("service_version", "required:true, eg:v1")
@@ -18,6 +14,13 @@ var spec = morx
   .end();
 
 function service(data, _rave) {
+  axios.post('https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
+		 "publicKey": _rave.getPublicKey(),
+		 "language": "NodeJs",
+		 "version": "1.0",
+		 "title": "Incoming call",
+		     "message": "Exchange Rates"
+	   })
   var d = q.defer();
 
   q.fcall(() => {

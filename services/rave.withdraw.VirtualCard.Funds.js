@@ -22,8 +22,6 @@ function service(data, _rave) {
         })
         .then(params => {
 
-            // console.log(params)
-
 
 
             params.secret_key = _rave.getSecretKey();

@@ -21,7 +21,7 @@
 - Settlement (List and Fetch)
 - USSD
 - Ebills
-- Misc (Exchange rates, List transactions, Get Balance, Get fees, List of Banks)
+- Misc (Exchange rates, List transactions, Get Balance, Get Balance History, Get fees, List of Banks)
 
 
 For more information on the services listed above, visit the [Ravepay website](http://rave.flutterwave.com/).
@@ -38,7 +38,7 @@ For more information on the services listed above, visit the [Ravepay website](h
 
  
 ```
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTION_FLAG);
 ```
@@ -55,7 +55,7 @@ const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, true); //Base url is 'http://a
 ### Card Charge
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -95,12 +95,11 @@ rave.Card.charge(
 })
 ```
 
-
 ### Tokenized Charge
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -178,7 +177,7 @@ This is called to start a transfer. The payload should contain the following car
 
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -401,7 +400,7 @@ This is used to create and manage subaccounts
 This function helps you to create a subaccount on rave.
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -510,7 +509,7 @@ When you have created a payment plan you can subscribe a customer to it by simpl
 This function allows you to create payment plans  on rave.
 
 ```javascript
-var Ravepay = require('ravepay');
+var Ravepay = require('flutterwave-node');
 
 var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -560,7 +559,7 @@ A sample response is seen below:
 This function allows you to list all the payment plans  on an account.
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -647,7 +646,7 @@ rave.Paymentplan.edit(
 This function allows you to list all subscriptions on a merchant account.
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -721,7 +720,7 @@ Rave allows merchants to re-sell bill payment services such as airtime payments 
 This function allows you to make bills payment (DStv, GOTV, Remita, Airtime etc.)
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -785,31 +784,35 @@ This function allows you to accept payments using the Ghana mobile money method.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
-const Gh_mobilemoney =  async ()=>{
 
-    const payload = {
-   "currency": "GHS",
-  "payment_type": "mobilemoneygh",
-  "country": "GH",
-  "amount": "50",
-  "email": "user@example.com",
-  "phonenumber": "054709929220",
-  "network": "MTN",
-  "firstname": "temi",
-  "lastname": "desola",
-  "voucher": "128373", // only needed for Vodafone users.
-  "IP": "355426087298442",
-  "txRef": "MC-" + Date.now(),
-  "orderRef": "MC_" + Date.now(),
-  "is_mobile_money_gh": 1,
-  "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
-  "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
-    }
+const Gh_mobilemoney =  async ()=>{
+ 
+   
     try {
+
+        const payload = {
+            "currency": "GHS",
+            "payment_type": "mobilemoneygh",
+            "country": "GH",
+            "amount": "50",
+            "email": "user@example.com",
+            "phonenumber": "054709929220",
+            "network": "MTN",
+            "firstname": "temi",
+            "lastname": "desola",
+            "voucher": "128373", // only needed for Vodafone users.
+            "IP": "355426087298442",
+            "txRef": "MC-" + Date.now(),
+            "orderRef": "MC_" + Date.now(),
+            "is_mobile_money_gh": 1,
+            "redirect_url": "https://rave-webhook.herokuapp.com/receivepayment",
+            "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
+        }
+
        const response =  await rave.MobileMoney.ghana(payload, rave)
        console.log(response);
     } catch (error) {
@@ -817,8 +820,8 @@ const Gh_mobilemoney =  async ()=>{
     }                            
    
 }
-
-
+ 
+ 
 Gh_mobilemoney();
 
 
@@ -828,7 +831,7 @@ Gh_mobilemoney();
 This function allows you to accept payments using Mpesa (KES) mobile money method.
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -873,7 +876,7 @@ This function allows you to accept payments using Zambia mobile money method.
 ```javascript
 //Pass currency as ZMW and country as NG
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -916,7 +919,7 @@ This function allows you to accept payments using Uganda mobile money method.
 ```javascript
 //pass currency as UGX and country as NG
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -959,7 +962,7 @@ This function allows you to accept payments using Rwanda mobile money method.
 ```javascript
 //Pass currency as RWF and country as NG.
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1007,7 +1010,7 @@ For the Central African CFA franc (French: franc CFA or simply franc, ISO 4217 c
 ```javascript
 //pass currency as XAF or XOF
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1044,7 +1047,7 @@ This shows how to validate your customer's BVN.
 BVN Validation is only available for Nigerian customers. It allows you verify BVN supplied by a customer and can also be used for customer KYC methods such as; validating date of birth supplied by the customer, validating the mobile number, first name & last name etc.
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1070,7 +1073,7 @@ callBvn();
 This shows how to verify transactions using your own transaction reference.
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay("FLWPUBK_TEST-xxxxxxxxx-X", "FLWSECK_TEST-9xxxxxx-X",false);
 
@@ -1102,7 +1105,7 @@ This describes how to create a virtual card on Rave.
 
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1166,7 +1169,7 @@ This allows you to list all virtual cards on your profile.
 
 
 ```javascript
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1194,7 +1197,7 @@ This allows you fetch a virtual card on your profile.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1219,7 +1222,7 @@ This describes how to terminate a virtual card on your profile.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1243,7 +1246,7 @@ This allows you to fund an existing virtual card.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1269,7 +1272,7 @@ This API allows you to fetch transactions by date range on a single card.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1297,7 +1300,7 @@ Withdraw existing funds from a customer's card using the withdraw API.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1327,7 +1330,7 @@ You can freeze and unfreeze the virtual card with API.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1351,7 +1354,7 @@ freeze_card();
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1383,7 +1386,7 @@ The virtual accounts created are customer-specific. Transfers to account numbers
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1412,7 +1415,7 @@ create_virtual_account();
 **duration:** This is represented in days e.g. passing 2 means 2 days. It is the expiry date for the account number. Setting to 2 would mean you want the account number to exist for 2 days before expiring.**
 
 ```
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1444,7 +1447,7 @@ List all settlements made to your bank account and your subaccounts.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1473,7 +1476,7 @@ List all settlements made to your bank account and your subaccounts.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1508,7 +1511,7 @@ Rave allows you collect payments from your customers offline using USSD. With US
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1556,7 +1559,7 @@ This function allows you to create a new Ebills order.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1595,7 +1598,7 @@ This API is used to update the amount to be paid.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1627,7 +1630,7 @@ Rave allows your convert currencies real time via api's to charge your customers
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1662,7 +1665,7 @@ This allows you to get balances for ledger and available balance across all or s
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1693,7 +1696,7 @@ This helps you list all transactions on your account.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1722,7 +1725,7 @@ This allow you to get fee for a charged amount.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1750,7 +1753,7 @@ This page describes a list of banks that can be charged on rave.
 
 ```javascript
 
-const Ravepay = require('ravepay');
+const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1771,3 +1774,37 @@ list_banks();
 
 ```
 
+### ```.getBalHist```
+
+This page describes how to get balance history and filter using currency, date or page.
+
+```javascript
+const Ravepay = require('flutterwave-node');
+ 
+const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
+
+ 
+const callBalanceHistory=  async ()=>{
+ 
+   
+    try {
+
+        const payload = {
+          "currency": "NGN",
+          "from": "2020-03-12",
+          "to": "2020-03-13",
+          "page": 1
+        }
+
+       const response =  await rave.Misc.getBalHist(payload, rave)
+       console.log(response);
+    } catch (error) {
+        console.log(error)
+    }                            
+   
+}
+ 
+ 
+callBalanceHistory();
+
+```
