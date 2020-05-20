@@ -31,6 +31,7 @@ var spec =  morx.spec()
 				.build('recurring_stop', 'required:false')
 				.build('include_integrity_hash', 'required:false,eg:2017050')
 				.build('3DS_OVERRIDE', 'required:false') 
+				.build('network', 'required:false') 
 				.end();
 
 function service(data, _rave){
