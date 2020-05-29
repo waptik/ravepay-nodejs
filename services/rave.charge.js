@@ -16,7 +16,7 @@ var spec = morx.spec()
 	.build('email', 'required:true, eg:debowalefaulkner@gmail.com')
 	.build('firstname', 'required:false, eg:lawal')
 	.build('lastname', 'required:false, eg:garuba')
-	.build('IP', 'required:true, eg:127.0.0.1')
+	.build('IP', 'required:false, eg:127.0.0.1')
 	.build('narration', 'required:false, eg:89938910')
 	.build('txRef', 'required:true, eg:443342')
 	.build('orderRef', 'required:true, eg:URF_MMGH_1571830523156_7712735')
@@ -42,7 +42,7 @@ var spec = morx.spec()
 	.build('orderRef', 'required:false')
 	.build('redirect_url', 'required:false,eg:http://your_redirect_url.com')
 	.build('3DS_OVERRIDE', 'required:false')
-	.build('network', 'required:false') 
+	.build('network', 'required:false')
 	.end();
 
 function service(data, _rave) {
