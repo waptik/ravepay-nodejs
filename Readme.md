@@ -94,8 +94,8 @@ rave.Card.charge(
     
 })
 ```
-Get a more detailed overview of card payments with Rave by reading https://medium.com/@jake_parkers/ultimate-guide-to-card-transactions-with-rave-420e7290f8b9
-
+Get a more detailed overview of card payments with Rave [here](https://medium.com/@jake_parkers/ultimate-guide-to-card-transactions-with-rave-420e7290f8b9
+)  
 ### Tokenized Charge
 
 ```javascript
