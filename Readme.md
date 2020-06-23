@@ -100,26 +100,32 @@ Get a more detailed overview of card payments with Rave [here](https://medium.co
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require("flutterwave-node");
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
-rave.TokenCharge.card({
-   "currency":"NGN",
-   "token":"flw-t0876849e016386b2d-k3n-mo",
-   "country":"NG",
-   "amount":1000,
-   "email":"desola.ade1@gmail.com",
-   "firstname":"temi",
-   "lastname":"Oyekole",
-   "IP":"190.233.222.1",
-   "txRef":"MC-7666-YU"
-}).then(resp => {
-    console.log(resp.body);
-}).catch(err => {
-    console.log(err);
-    
-})
+const tokenCharge = async () => {
+	const payload = {
+		currency: "NGN",
+		token: "flw-t1nf-da8bf499933fe2d8989e5491e545de50-m03k",
+		country: "NG",
+		amount: 1000,
+		email: "olufemiobafunmiso@gmail.com",
+		firstname: "Olufemi",
+		lastname: "Oba",
+		IP: "190.233.222.1",
+		txRef: "Rave-Pages449771700550",
+	};
+	try {
+		const response = await rave.TokenCharge.card(payload);
+		console.log(response);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+tokenCharge();
+
 ```
 
 
@@ -1012,7 +1018,7 @@ Ugx_mob_money();
 ```
 **Redirect customer to the link returned in the charge initiation response redirect to data.link**'
 
-### ```Rwanda``
+###```Rwanda``
 This function allows you to accept payments using Rwanda mobile money method.
 
 ```javascript
