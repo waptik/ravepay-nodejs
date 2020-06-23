@@ -28,7 +28,7 @@ For more information on the services listed above, visit the [Ravepay website](h
 
 ## How to use
 
-`npm install ravepay`
+`npm install flutterwave-node`
 
 
  You can get your PUBLICK_KEY and SECRET_KEY from the Rave dashboard. 
@@ -273,6 +273,7 @@ Bulktransfer();
 #### Returns
 
 A sample response is:
+
 ```javascript
 {
   status: 'success',
@@ -394,7 +395,9 @@ getFee();
 ```
 
 ### ```.getBalance()```
+
 This helps you get your balance for transfers.
+
 ```javascript
 const Ravepay = require('flutterwave-node';
 
@@ -789,7 +792,7 @@ const callBills =  async () =>{
         }
     }
     try {
-       const response =  await rave.BillsPayment.bills(payload, rave)
+       const response =  await rave.BillsPayment.bills(payload)
        console.log(response);
     } catch (error) {
         console.log(error)
@@ -861,7 +864,7 @@ const Gh_mobilemoney =  async ()=>{
             "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
         }
 
-       const response =  await rave.MobileMoney.ghana(payload, rave)
+       const response =  await rave.MobileMoney.ghana(payload)
        console.log(response);
     } catch (error) {
         console.log(error)
@@ -874,6 +877,7 @@ Gh_mobilemoney();
 
 
 ```
+**Redirect customer to the link returned in the charge initiation response redirect to data.link**
 
 ### ```Mpesa```
 This function allows you to accept payments using Mpesa (KES) mobile money method.
@@ -903,7 +907,7 @@ const callMpesa =  async ()=>{
   	"is_mpesa_lipa": 1
     }
     try {
-       const response =  await rave.MobileMoney.mpesa(payload, rave)
+       const response =  await rave.MobileMoney.mpesa(payload)
        console.log(response);
     } catch (error) {
         console.log(error)
@@ -948,7 +952,7 @@ const zmw_mobilemoney=  async ()=>{
   "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"  
     }
     try {
-       const response =  await rave.MobileMoney.zambia(payload, rave)
+       const response =  await rave.MobileMoney.zambia(payload)
        console.log(response);
     } catch (error) {
         console.log(error)
@@ -960,6 +964,7 @@ const zmw_mobilemoney=  async ()=>{
 zmw_mobilemoney();
 
 ```
+**Redirect customer to the link returned in the charge initiation response redirect to data.link**
 
 ### ```Uganda```
 This function allows you to accept payments using Uganda mobile money method.
@@ -991,7 +996,7 @@ const Ugx_mob_money=  async ()=>{
   "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
     }
     try {
-       const response =  await rave.MobileMoney.uganda(payload, rave)
+       const response =  await rave.MobileMoney.uganda(payload)
        console.log(response);
     } catch (error) {
         console.log(error)
@@ -1003,7 +1008,10 @@ const Ugx_mob_money=  async ()=>{
 Ugx_mob_money();
 
 
+
 ```
+**Redirect customer to the link returned in the charge initiation response redirect to data.link**'
+
 ### ```Rwanda``
 This function allows you to accept payments using Rwanda mobile money method.
 
@@ -1034,7 +1042,7 @@ const rwn_mobilemoney=  async ()=>{
   "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
    }
     try {
-       const response =  await rave.MobileMoney.rwanda(payload, rave)
+       const response =  await rave.MobileMoney.rwanda(payload)
        console.log(response);
     } catch (error) {
         console.log(error)
@@ -1046,6 +1054,7 @@ const rwn_mobilemoney=  async ()=>{
 rwn_mobilemoney();
 
 ```
+**Redirect customer to the link returned in the charge initiation response redirect to data.link**
 
 ### ```.francophone()```
 Rave currently allows merchants to collect payments in Francophone Africa via mobile money from **all networks.**
@@ -1078,7 +1087,7 @@ const franco_mobilemoney=  async ()=>{
   "device_fingerprint": "69e6b7f0b72037aa8428b70fbe03986c"
    }
     try {
-       const response =  await rave.MobileMoney.francophone(payload, rave)
+       const response =  await rave.MobileMoney.francophone(payload)
        console.log(response);
     } catch (error) {
         console.log(error)
@@ -1090,6 +1099,8 @@ const franco_mobilemoney=  async ()=>{
 franco_mobilemoney();
 
 ```
+****Redirect customer to the link returned in the charge initiation response redirect to data.link****
+
 ## BVN Verification
 This shows how to validate your customer's BVN.
 BVN Validation is only available for Nigerian customers. It allows you verify BVN supplied by a customer and can also be used for customer KYC methods such as; validating date of birth supplied by the customer, validating the mobile number, first name & last name etc.
@@ -1105,7 +1116,7 @@ const callBvn =  async () => {
         bvn:"12345678901"
     }
     try {
-       const response =  await rave.Bvn.verification(payload, rave)
+       const response =  await rave.Bvn.verification(payload)
        console.log(response);
     } catch (error) {
         console.log(error)
@@ -1132,7 +1143,7 @@ const callVerify =  async (ref) => {
         txref:ref
     }
     try {
-       const response =  await rave.VerifyTransaction.verify(payload, rave)
+       const response =  await rave.VerifyTransaction.verify(payload)
        console.log(response);
     } catch (error) {
         console.log(error)
@@ -1170,7 +1181,7 @@ const create_Vcard = async ()=> {
 		callback_url: "https://your-callback-url.com/"
 	};
 	try {
-		const response = await rave.VirtualCards.create(payload, rave);
+		const response = await rave.VirtualCards.create(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1226,7 +1237,7 @@ const list_Vcard = async ()=> {
 		page:1
 	};
 	try {
-		const response = await rave.VirtualCards.list(payload, rave);
+		const response = await rave.VirtualCards.list(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1254,7 +1265,7 @@ const get_Vcard = async ()=> {
 		id:"660bae3b-333c-410f-b283-2d181587247f"
 	};
 	try {
-		const response = await rave.VirtualCards.get(payload, rave);
+		const response = await rave.VirtualCards.get(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1279,7 +1290,7 @@ const terminate_Vcard = async ()=> {
 		id:"660bae3b-333c-410f-b283-2d181587247f"
 	};
 	try {
-		const response = await rave.VirtualCards.terminate(payload, rave);
+		const response = await rave.VirtualCards.terminate(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1305,7 +1316,7 @@ const fund_Vcard = async ()=> {
 	debit_currency: "NGN",
 	};
 	try {
-		const response = await rave.VirtualCards.fund(payload, rave);
+		const response = await rave.VirtualCards.fund(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1333,7 +1344,7 @@ const fetch_trans_Vcard = async ()=> {
       CardId: "e9ca13bd-36b4-4691-9ee6-e23d7f2e196c",
 	};
 	try {
-		const response = await rave.VirtualCards.fetchTransactions(payload, rave);
+		const response = await rave.VirtualCards.fetchTransactions(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1358,7 +1369,7 @@ const withdraw_funds = async ()=> {
       card_id: "e9ca13bd-36b4-4691-9ee6-e23d7f2e196c",
 	};
 	try {
-		const response = await rave.VirtualCards.withdraw(payload, rave);
+		const response = await rave.VirtualCards.withdraw(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1388,7 +1399,7 @@ const freeze_card = async ()=> {
       card_id: "e9ca13bd-36b4-4691-9ee6-e23d7f2e196c",
 	};
 	try {
-		const response = await rave.VirtualCards.freeze(payload, rave);
+		const response = await rave.VirtualCards.freeze(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1412,7 +1423,7 @@ const unfreeze_card = async ()=> {
       card_id: "e9ca13bd-36b4-4691-9ee6-e23d7f2e196c",
 	};
 	try {
-		const response = await rave.VirtualCards.unfreeze(payload, rave);
+		const response = await rave.VirtualCards.unfreeze(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1444,7 +1455,7 @@ onst create_virtual_account = async ()=> {
 	is_permanent: true
 	};
 	try {
-		const response = await rave.VirtualAccount.accountNumber(payload, rave);
+		const response = await rave.VirtualAccount.accountNumber(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1467,14 +1478,14 @@ const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
-onst create_virtual_account = async ()=> {
+const create_virtual_account = async ()=> {
 	const payload = {
 	email: "ade_temi@icloud.com",
 	frequency: 4,
    duration: 4
 	};
 	try {
-		const response = await rave.VirtualAccount.accountNumber(payload, rave);
+		const response = await rave.VirtualAccount.accountNumber(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1497,17 +1508,17 @@ List all settlements made to your bank account and your subaccounts.
 
 const Ravepay = require('flutterwave-node');
 
-const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
-
-
+const pubkey = "FLWPUBK_TEST-xxxxxxxxxx";
+const seckey = "FLWSECK_TEST-xxxxxxx";
+const rave = new Ravepay(pubkey, seckey, false);
 const call_list_settlement = async ()=> {
 	const payload = {
-     seckey:"FLWSECK_TEST-XXXXXXXXXXX-X",
      from:"2020:01:22",
-     to:"2020:02:09"
+     to:"2020:02:09",
+     seckey:seckey,
 	};
 	try {
-		const response = await rave.Settlement.list(payload, rave);
+		const response = await rave.Settlement.list(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1515,6 +1526,7 @@ const call_list_settlement = async ()=> {
 };
 
 call_list_settlement();
+
 
 ```
 
@@ -1532,11 +1544,10 @@ const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 const call_fetch_settlement = async ()=> {
 	const payload = {
      id:"45318",
-     seckey:"FLWSECK_XXXXXXXXX-X",
      subaccountid:"RC-XXXXXXXXXXX" //optional
 	};
 	try {
-		const response = await rave.Settlement.fetch(payload, rave);
+		const response = await rave.Settlement.fetch(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1584,7 +1595,7 @@ const Ussd_charge = async()=> {
         device_fingerprint: "69e6b7f0b72037aa8428b70fbe03986c"
 	};
 	try {
-		const response = await rave.USSD.charge(payload, rave);
+		const response = await rave.USSD.charge(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1624,7 +1635,7 @@ const ebills_create = async()=> {
         IP:"127.0.9"
       };
 	try {
-		const response = await rave.Ebills.create(payload, rave);
+		const response = await rave.Ebills.create(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1658,7 +1669,7 @@ const ebills_update = async ()=> {
         reference:"RVEBLS-045475BB5A9A-23240"
       };
 	try {
-		const response = await rave.Ebills.update(payload, rave);
+		const response = await rave.Ebills.update(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1696,7 +1707,7 @@ const exchange_rates = async ()=> {
             }
           };
 	try {
-		const response = await rave.Misc.exchange_rates(payload, rave);
+		const response = await rave.Misc.exchange_rates(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1726,7 +1737,7 @@ const get_balance= async ()=> {
             currency:"NGN" // for single balance. For all balance don't add currency
           };
 	try {
-		const response = await rave.Misc.getBalance(payload, rave);
+		const response = await rave.Misc.getBalance(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1756,7 +1767,7 @@ const get_list_of_transactions= async ()=> {
             status: "successful" //"failed"
           };
 	try {
-		const response = await rave.Misc.list_transactions(payload, rave);
+		const response = await rave.Misc.list_transactions(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1784,7 +1795,7 @@ const get_fee= async ()=> {
             currency: "NGN",
           };
 	try {
-		const response = await rave.Misc.getFee(payload, rave);
+		const response = await rave.Misc.getFee(payload);
 		console.log(response);
 	} catch (error) {
 		console.log(error);
@@ -1844,7 +1855,7 @@ const callBalanceHistory=  async ()=>{
           "page": 1
         }
 
-       const response =  await rave.Misc.getBalHist(payload, rave)
+       const response =  await rave.Misc.getBalHist(payload)
        console.log(response);
     } catch (error) {
         console.log(error)
