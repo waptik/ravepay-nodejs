@@ -6,7 +6,7 @@ const axios = require('axios');
 //This helps you get your balance for transfers
 
 var spec =  morx.spec()
-                .build('currency', 'required:required,eg:NGN')
+                .build('currency', 'required:true')
                 .end();
 
 
@@ -36,7 +36,7 @@ function service(data, _rave){
     })
     .then( resp => {
 
-        d.resolve(resp);
+        d.resolve(resp.body);
 
     })
     .catch( err => {

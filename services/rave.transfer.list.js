@@ -2,8 +2,8 @@ var morx = require('morx');
 var q = require('q');
 const axios = require('axios');
 var spec = morx.spec()
-.build('page', 'required:true, eg:1')
-.build('status', 'required:true, eg:successful')
+.build('page', 'required:false, eg:1')
+.build('status', 'required:false, eg:successful')
 .end();
 
 
@@ -36,7 +36,7 @@ function service(data,_rave) {
 		.then(response => {
 
 		
-			d.resolve(response);
+			d.resolve(response.body);
 
 		})
 		.catch(err => {

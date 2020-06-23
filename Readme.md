@@ -94,6 +94,7 @@ rave.Card.charge(
     
 })
 ```
+Get a more detailed overview of card payments with Rave by reading https://medium.com/@jake_parkers/ultimate-guide-to-card-transactions-with-rave-420e7290f8b9
 
 ### Tokenized Charge
 
@@ -105,8 +106,7 @@ const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
 rave.TokenCharge.card({
    "currency":"NGN",
-   "SECKEY":"FLWSECK-e6db11d1f8a6208de8cb2f94e293450e-X",
-   "token":"flw-t0876849e016386b2d-k3n-mock",
+   "token":"flw-t0876849e016386b2d-k3n-mo",
    "country":"NG",
    "amount":1000,
    "email":"desola.ade1@gmail.com",
@@ -181,22 +181,25 @@ const Ravepay = require('flutterwave-node');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
-rave.Transfer.initiate(
-    {
-        "account_bank": "044",
-        "account_number": "0690000044",
-        "amount": 500,
-        "narration": "New transfer",
-        "currency": "NGN",
-        "reference": "mk-902837-jk"
+const transfer = async () => {
+    try {
+        const payload = {
+            "account_bank": "044",
+            "account_number": "0690000044",
+            "amount": 500,
+            "narration": "New transfer",
+            "currency": "NGN",
+            "reference":"trans-"+ Date.now()
+        }
+        const response = await rave.Transfer.initiate(payload)
+        console.log(response)
+
+    } catch (error) {
+        console.log(error)
     }
-).then(resp => {
-    console.log(resp.body);
-    
-}).catch(err => {
-    console.log(err);
-    
-})
+}
+transfer();
+
 ```
 #### Returns
 
@@ -229,54 +232,56 @@ A sample response is:
 ### ```.bulk()```
 This allows you send bulk transfers.
 
-The payload should contain the following parameters
-
-* ```'bulk_data', 'required:true, eg:{ "Bank":"044","Account Number":"0690000032"},{"Bank":"044","Account Number":"0690000032"}'```,
 
 ```javascript
-rave.Transfer.bulk(
-    {
-  "title":"May Staff Salary",
-  "bulk_data":[
-  	{
-        "Bank":"044",
-        "Account Number": "0690000032",
-        "Amount":500,
-        "Currency":"NGN",
-        "Narration":"Bulk transfer 1",
-        "reference": "mk-82973029"
-    },
-    {
-        "Bank":"044",
-        "Account Number": "0690000034",
-        "Amount":500,
-        "Currency":"NGN",
-        "Narration":"Bulk transfer 2",
-        "reference": "mk-283874750"
+const Ravepay = require('flutterwave-node';
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+const Bulktransfer = async () => {
+    try {
+        const payload = {
+            "title":"May Staff Salary",
+            "bulk_data":[
+                {
+                  "Bank":"044",
+                  "Account Number": "0690000032",
+                  "Amount":500,
+                  "Currency":"NGN",
+                  "Narration":"Bulk transfer 1",
+                  "reference": "mk1-"+ Date.now()
+              },
+              {
+                  "Bank":"044",
+                  "Account Number": "0690000034",
+                  "Amount":500,
+                  "Currency":"NGN",
+                  "Narration":"Bulk transfer 2",
+                  "reference": "mk2-"+ Date.now()
+              }
+            ]
+          }
+        const response = await rave.Transfer.bulk(payload)
+        console.log(response)
+
+    } catch (error) {
+        console.log(error)
     }
-  ]
 }
-).then(resp => {
-    console.log(resp.body);
-    
-}).catch(err => {
-    console.log(err);
-    
-})
+Bulktransfer();
 ```
 #### Returns
 
 A sample response is:
 ```javascript
 {
-    "status": "success",
-    "message": "BULK-TRANSFER-CREATED",
-    "data": {
-        "id": 21,
-        "uuid": 21,
-        "date_created": "2018-05-17T08:39:54.000Z",
-        "approver": "N/A"
-    }
+  status: 'success',
+  message: 'BULK-TRANSFER-CREATED',
+  data: {
+    id: 4032,
+    date_created: '2020-06-23T20:21:20.000Z',
+    approver: 'N/A'
+  }
 }
 ```
 
@@ -285,14 +290,22 @@ This allows you retrieve a single transfer.
 It uses a GET method.
 
 ```javascript
-rave.Transfer.fetch('<id="transfer ID" e.g mk-902837-jk>') 
-    .then(resp => {
-        console.log(resp.body);
+const Ravepay = require('flutterwave-node';
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+const fetchtransfer = async (ref) => {
+    try {
         
-    }).catch(err => {
-        console.log(err);
-        
-    })
+        const response = await rave.Transfer.fetch(ref)
+        console.log(response)
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+fetchtransfer("rave-transfer-1528159847480966");
+
 ```
 #### Returns
 
@@ -335,49 +348,84 @@ A sample response is:
 This allows you fetch all transfers using a GET method
 
 ```javascript
-rave.Transfer.list() 
-    .then(resp => {
-        console.log(resp.body);
-        
-    }).catch(err => {
-        console.log(err);
-        
-    })
+const Ravepay = require('flutterwave-node';
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+const listTransfer = async () => {
+    try {
+        const payload={
+            "page":1,
+            "status":"successful" //This allows you fetch only transfers with a specific status e.g. fetch all successful transactions. Possible values are failed, successful
+        }
+        const response = await rave.Transfer.list(payload)
+        console.log(response)
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+listTransfer();
+
 ```
 
 ### ```.getApplicableFee()```
 This retrieves the fee for a transfer
 
 ```javascript
-rave.Transfer.getApplicableFee()
-    .then(resp => {
-        console.log(resp.body);
-        
-    }).catch(err => {
-        console.log(err);
-        
-    })
+const Ravepay = require('flutterwave-node';
+
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
+
+const getFee = async () => {
+    try {
+        const payload={
+            "currency":"NGN",
+            "amount":"1000" 
+        }
+        const response = await rave.Transfer.getApplicableFee(payload)
+        console.log(response)
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+getFee();
 ```
 
 ### ```.getBalance()```
 This helps you get your balance for transfers.
+```javascript
+const Ravepay = require('flutterwave-node';
 
-* ```'currency', 'required:required,eg:NGN'```,
+const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
+const getBalance = async (currency) => {
+    try {
+       const payload={"currency":"NGN"}
+        const response = await rave.Transfer.getBalance(payload)
+        console.log(response)
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+getBalance();
+
+```
 #### Returns
 
 A sample response is:
 ```javascript
 {
-    "status": "success",
-    "message": "WALLET-BALANCE",
-    "data": {
-        "Id": 3570,
-        "ShortName": "NGN",
-        "WalletNumber": "5070000106866",
-        "AvailableBalance": 177337.24,
-        "LedgerBalance": 177337.24
-    }
+  status: 'success',
+  message: 'WALLET-BALANCE',
+  data: {
+    Id: 2040517,
+    ShortName: 'NGN',
+    WalletNumber: '7844600144573',
+    AvailableBalance: 10918330.575
+  }
 }
 ```
 

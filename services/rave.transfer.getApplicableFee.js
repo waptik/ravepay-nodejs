@@ -4,12 +4,13 @@ const axios = require('axios');
 
 
 //This retrieves the fee for a transfer
+var spec = morx.spec()
+.build('currency', 'required:true')
+.build('amount', 'required:true')
+.end();
 
-var spec =  morx.spec()  
-				.build('__n', 'required:false, eg:NGN')  
-				.end();
 
-function service(_rave){
+function service(data,_rave){
 	axios.post('https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
 		 "publicKey": _rave.getPublicKey(),
 		 "language": "NodeJs",
@@ -23,7 +24,7 @@ function service(_rave){
 
 	q.fcall( () => {
 
-		var validated = morx.validate(spec, _rave.MORX_DEFAULT);
+		var validated = morx.validate(data,spec, _rave.MORX_DEFAULT);
         var params = validated.params; 
         // console.log(params)
         _rave.params = params
@@ -41,7 +42,7 @@ function service(_rave){
 	.then( response => {
 
 		// console.log(response);
-		d.resolve(response);
+		d.resolve(response.body);
 
 	})
 	.catch( err => {
