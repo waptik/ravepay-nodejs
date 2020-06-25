@@ -17,7 +17,8 @@ var spec =  morx.spec()
 				.build('device_fingerprint', 'required:false,eg:12233') 
 				.build('accountbank', 'required:true, eg:044')
 				.build('accountnumber', 'required:false,validators:isNumeric, eg:06900021')
-				.build('include_integrity_hash', 'required:false')		
+				.build('include_integrity_hash', 'required:false')	
+				.build('subaccounts', 'required:false')	
 				.end();
 
 
