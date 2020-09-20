@@ -20,7 +20,7 @@ describe("#Rave Preauth service test", function(){
         it("shouldgive  a 200 response status", function(done){
             var ravebase = new base(process.env.PUBLIC_KEY, process.env.SECRET_KEY, process.env.PRODUCTION_FLAG);
             var preauthInstance = new preauth(ravebase);
-            this.timeout(10000);
+            this.timeout(20000);
             var payload = {
                 "PBFPubKey": process.env.PUBLIC_KEY,
                 "cardno": "5377283645077450",
@@ -54,7 +54,7 @@ describe("#Rave Preauth service test", function(){
         })
 
         it("should return a an error message that property charge_type is required", function(done){
-            this.timeout(10000);
+            this.timeout(15000);
             var ravebase = new base(process.env.PUBLIC_KEY, process.env.SECRET_KEY, "https://ravesandboxapi.flutterwave.com");
             var preauthInstance = new preauth(ravebase);
             var payload = {
@@ -83,7 +83,7 @@ describe("#Rave Preauth service test", function(){
 
     describe("#rave void transaction test", function(){
         it("should return a void successful response", function(done){
-            this.timeout(10000);
+            this.timeout(15000);
             var ravebase = new base(process.env.PUBLIC_KEY, process.env.SECRET_KEY, "https://ravesandboxapi.flutterwave.com");
             var preauthInstance = new preauth(ravebase);
             var payload = {
@@ -98,7 +98,7 @@ describe("#Rave Preauth service test", function(){
         })
 
         it("should return a success status in the data object from response.", function(done){
-            this.timeout(10000);
+            this.timeout(15000);
             var ravebase = new base(process.env.PUBLIC_KEY, process.env.SECRET_KEY, "https://ravesandboxapi.flutterwave.com");
             var preauthInstance = new preauth(ravebase);
             var payload = {

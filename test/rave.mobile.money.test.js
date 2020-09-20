@@ -1,6 +1,6 @@
-require('dotenv').config({
-    path: '../.env'
-});
+// require('dotenv').config({
+//     path: '../.env'
+// });
 
 var mobilemoney = require('../lib/rave.mobilemoney');
 var base = require('../lib/rave.base');
@@ -9,6 +9,7 @@ var mocha = require('mocha');
 var chai = require('chai');
 var expect = chai.expect;
 var chaiAsPromised = require('chai-as-promised');
+var dotenv = require('dotenv').config();
 
 
 chai.use(chaiAsPromised);
@@ -20,12 +21,12 @@ describe("#Rave Mobile Money Test", function () {
     var secret_key = process.env.SECRET_KEY;
     var production_flag = process.env.PRODUCTION_FLAG;
 
-    var ravebase = new base(process.env.PUBLIC_KEY, process.env.SECRET_KEY, process.env.PRODUCTION_FLAG);
+    var ravebase = new base(public_key, secret_key, production_flag);
     var mobilemoneyInstance = new mobilemoney(ravebase);
 
     describe("#Rave Ghana Mobile Money test", function () {
-        it("should return deep nested payment type", async function () {
-            this.timeout(10000);
+        it("should return deep nested status: 'pending'", async function () {
+            this.timeout(12000);
             var payload = {
                 "PBFPubKey": public_key,
                 "currency": "GHS",
@@ -50,7 +51,7 @@ describe("#Rave Mobile Money Test", function () {
 
             // return .then(resp => {
             // return resp.body;
-            return expect(resp.data).to.have.deep.property('paymentType', 'mobilemoneygh');
+            return expect(resp.data).to.have.deep.property('status', 'pending');
 
            
 
@@ -63,7 +64,7 @@ describe("#Rave Mobile Money Test", function () {
 
     describe("#Rave Mpesa test", function () {
         it("should return deep nested payment type: 'Mpesa'", async function () {
-            this.timeout(10000);
+            this.timeout(12000);
             var payload = {
                 "PBFPubKey": public_key,
                 "currency": "KES",
@@ -99,8 +100,8 @@ describe("#Rave Mobile Money Test", function () {
     });
 
     describe("#Rave Uganda Mobile Money test", function () {
-        it("should return deep nested payment type: 'mobilemoneyug'", async function () {
-            this.timeout(10000);
+        it("should return deep nested status: 'pending'", async function () {
+            this.timeout(12000);
             var payload = {
                 "PBFPubKey": public_key,
                 "currency": "UGX",
@@ -123,7 +124,7 @@ describe("#Rave Mobile Money Test", function () {
             var resp = await mobilemoneyInstance.uganda(payload);
 
 
-            return expect(resp.data).to.have.deep.property('paymentType', 'mobilemoneyug');
+            return expect(resp.data).to.have.deep.property('status', 'pending');
 
 
         });
@@ -132,8 +133,8 @@ describe("#Rave Mobile Money Test", function () {
     });
 
     describe("#Rave Zambia Mobile Money test", function () {
-        it("should return deep nested payment type: 'mobilemoneyzm'", async function () {
-            this.timeout(10000);
+        it("should return deep nested status: 'pending'", async function () {
+            this.timeout(12000);
             var payload = {
 	
                 "PBFPubKey": public_key,
@@ -158,7 +159,7 @@ describe("#Rave Mobile Money Test", function () {
             var resp = await mobilemoneyInstance.zambia(payload);
 
 
-            return expect(resp.data).to.have.deep.property('paymentType', 'mobilemoneyzm');
+            return expect(resp.data).to.have.deep.property('status', 'pending');
 
 
         });
@@ -166,9 +167,9 @@ describe("#Rave Mobile Money Test", function () {
 
     });
 
-    describe("#Rave Frnacophine Mobile Money test", function () {
-        it("should return deep nested response code:02", async function () {
-            this.timeout(10000);
+    describe("#Rave Francophone Mobile Money test", function () {
+        it("should return deep nested response_code: '02'", async function () {
+            this.timeout(12000);
             var payload = {
                 "PBFPubKey": public_key,
                 "currency": "XAF",
@@ -191,7 +192,7 @@ describe("#Rave Mobile Money Test", function () {
 
 
 
-            return expect(resp.data).to.have.property('response_code', '02');
+            return expect(resp.data).to.have.deep.property('response_code', '02');
             
 
 

@@ -20,14 +20,14 @@ describe("#Rave Bvn Verification Test", function () {
     var public_key = process.env.PUBLIC_KEY;
     var secret_key = process.env.SECRET_KEY;
     var production_flag = process.env.PRODUCTION_FLAG;
-    var ravebase = new base(process.env.PUBLIC_KEY, process.env.SECRET_KEY, process.env.PRODUCTION_FLAG);
+    var ravebase = new base(public_key, secret_key, production_flag);
     var bvnInstance = new bvn (ravebase);
 
  
 
         describe("#Rave BVN Verification test", function () {
             it("should pass if target is truthy message ",async function () {
-                this.timeout(10000);
+                this.timeout(12000);
                 var payload = {
   
                     "bvn":"12345678901"

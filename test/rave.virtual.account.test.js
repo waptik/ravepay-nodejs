@@ -20,14 +20,14 @@ describe("#Rave Virtual Accoount Test", function () {
     var public_key = process.env.PUBLIC_KEY;
     var secret_key = process.env.SECRET_KEY;
     var production_flag = process.env.PRODUCTION_FLAG;
-    var ravebase = new base(process.env.PUBLIC_KEY, process.env.SECRET_KEY, process.env.PRODUCTION_FLAG);
+    var ravebase = new base(public_key, secret_key, production_flag);
     var accountNumberInstance = new accountNumber (ravebase);
 
  
 
         describe("#Rave Create Virtual Account Number test", function () {
-            it("should return 'BANKTRANSFERS-ACCOUNTNUMBER-CREATED' message ",async function () {
-                this.timeout(20000);
+            it("should return status 'success'",async function () {
+                this.timeout(25000);
                 var payload = {
                     "email": "user@example.com",
                     "seckey": secret_key,
@@ -38,7 +38,7 @@ describe("#Rave Virtual Accoount Test", function () {
                 var resp = await accountNumberInstance.accountNumber(payload);
 
 
-               return expect(resp.body).to.have.property('message', 'BANKTRANSFERS-ACCOUNTNUMBER-CREATED')
+               return expect(resp.body).to.have.property('status', 'success')
             });
         });
     });

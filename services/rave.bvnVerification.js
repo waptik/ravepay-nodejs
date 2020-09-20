@@ -37,15 +37,10 @@ function service(data, _rave) {
 
 
 
-            params.seckey = _rave.getSecretKey();
+            params.secret_key = _rave.getSecretKey();
             params.method = "GET"
 
-            // console.log("pramssssss", params);
-            var BVN = params.bvn;
-            delete params.bvn;
-            // console.log("pramssssss delete", params);
-
-            return _rave.request(`v2/kyc/bvn/${BVN}`, params)
+            return _rave.request(`v2/kyc/bvn/${params.bvn}`, params)
         })
         .then(response => {
 

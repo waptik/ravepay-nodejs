@@ -20,49 +20,41 @@ describe("#Rave Settlement Test", function () {
     var public_key = process.env.PUBLIC_KEY;
     var secret_key = process.env.SECRET_KEY;
     var production_flag = process.env.PRODUCTION_FLAG;
-    var ravebase = new base(process.env.PUBLIC_KEY, process.env.SECRET_KEY, process.env.PRODUCTION_FLAG);
+    var ravebase = new base(public_key, secret_key, production_flag);
     var settlementInstance = new settlements(ravebase);
 
- 
 
         describe("#Rave List Settlement test", function () {
             it("should return Status message ",async function () {
-                this.timeout(10000);
+                this.timeout(12000);
                 var payload = {
                     "seckey":secret_key,
-                    "from": "2018:01:21",
-                    "to": "2019:12:21",
-                    "page": "20",
-                    "subaccountid":"RS_C3FCBECF928B4B33B9C3BC74A357A9E5"
-                    
+                    "from": "2019:01:01",
+                    "to": "2020:09:30",
+                    "page": "20"
                 }
                 var resp = await settlementInstance.list(payload);
 
 
-               return expect(resp.body).to.be.a('string')
+               return expect(resp.body).to.have.property('status', 'success')
             });
         });
 
-        describe("#Rave Fetch Settlement test", function () {
-            it("should return 'request' message ",async function () {
-                this.timeout(10000);
-                var payload = {
-                    "seckey":secret_key,
-                    "from": "2018:01:21",
-                    "to": "2019:12:21",
-                    "id": "233940" 
-                }
-                var resp = await settlementInstance.fetch(payload);
+        // describe("#Rave Fetch Settlement test", function () {
+        //     it("should return 'request' message ",async function () {
+        //         this.timeout(10000);
+        //         var payload = {
+        //             "seckey":secret_key,
+        //             "from": "2018:01:21",
+        //             "to": "2019:12:21",
+        //             "id": "233940" 
+        //         }
+        //         var resp = await settlementInstance.fetch(payload);
 
 
-                return expect(resp.body).to.be.a('string')
-            });
-        });
+        //         return expect(resp.body).to.be.a('string')
+        //     });
+        // });
     });
-
-
-
-//     PUBLIC_KEY=FLWPUBK_TEST-78a5e10dbafab98baae2218b624d6f6c-X
-// SECRET_KEY=FLWSECK_TEST-1f971b4589936d0cb0210ec52f2617f7-X
 
 

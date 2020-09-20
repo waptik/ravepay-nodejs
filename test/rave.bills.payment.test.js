@@ -21,14 +21,14 @@ describe("#Rave Bills Payment Test", function () {
     var public_key = process.env.PUBLIC_KEY;
     var secret_key = process.env.SECRET_KEY;
     var production_flag = process.env.PRODUCTION_FLAG;
-    var ravebase = new base(process.env.PUBLIC_KEY, process.env.SECRET_KEY, process.env.PRODUCTION_FLAG);
+    var ravebase = new base(public_key, secret_key, production_flag);
     var billsInstance = new bills_payment(ravebase);
 
  
 
         describe("#Rave fly_buy test", function () {
-            it("should return service response ", async function () {
-                this.timeout(10000);
+            it("should return status success ", async function () {
+                this.timeout(12000);
                 var payload = {
                     "secret_key": secret_key,
                     "service": "fly_buy",
@@ -48,14 +48,14 @@ describe("#Rave Bills Payment Test", function () {
                 var resp = await billsInstance.bills(payload);
 
 
-               return expect(resp.body).to.have.property('message', 'SERVICE-RESPONSE')
+               return expect(resp.body).to.have.property('status', 'success')
             });
         });
 
 
         describe("#Rave fly_bulk test", function () {
             it("should return data ", async function () {
-                this.timeout(10000);
+                this.timeout(12000);
                 var payload = {
                     "secret_key": secret_key,
                     "service": "fly_buy_bulk",
