@@ -11,14 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
       - uses: actions/checkout@v2
-
-      - name: Setup Node
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-
       - run: npm ci 
       - run: npm test
         env:
@@ -30,10 +26,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
       - uses: actions/checkout@v2
-
-      - name: Setup Node
       - uses: actions/setup-node@v1
         with:
           node-version: 12
