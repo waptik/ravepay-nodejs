@@ -26,33 +26,43 @@ describe("#Rave Settlement Test", function () {
 
         describe("#Rave List Settlement test", function () {
             it("should return Status message ",async function () {
-                this.timeout(12000);
+                this.timeout(15000);
                 var payload = {
                     "seckey":secret_key,
                     "from": "2019:01:01",
                     "to": "2020:09:30",
                     "page": "20"
                 }
-                var resp = await settlementInstance.list(payload);
-
-
-               return expect(resp.body).to.have.property('status', 'success')
+                settlementResp = [];
+                settlementInstance.list(payload).then(resp => {
+                settlementResp = resp;
+                if(resp.status == 'success') {
+                    done();
+                }
+                }).catch(err => {
+                    done(err);
+                })
             });
         });
 
         // describe("#Rave Fetch Settlement test", function () {
         //     it("should return 'request' message ",async function () {
-        //         this.timeout(10000);
+        //         this.timeout(15000);
         //         var payload = {
         //             "seckey":secret_key,
         //             "from": "2018:01:21",
         //             "to": "2019:12:21",
         //             "id": "233940" 
         //         }
-        //         var resp = await settlementInstance.fetch(payload);
-
-
-        //         return expect(resp.body).to.be.a('string')
+        //         settlementResp = [];
+        //         settlementInstance.fetch(payload).then(resp => {
+        //         settlementResp = resp;
+        //         if(resp.status == 'success') {
+        //             done();
+        //         }
+        //         }).catch(err => {
+        //             done(err);
+        //         })
         //     });
         // });
     });

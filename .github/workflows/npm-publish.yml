@@ -20,6 +20,7 @@ jobs:
         env:
           PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          CARD_ID: ${{ secrets.CARD_ID }}
 
   publish-npm:
     needs: build

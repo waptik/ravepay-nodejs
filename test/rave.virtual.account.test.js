@@ -14,7 +14,7 @@ var chaiAsPromised = require('chai-as-promised');
 
 chai.use(chaiAsPromised);
 
-describe("#Rave Virtual Accoount Test", function () {
+describe("#Rave Virtual Account Test", function () {
 
    
     var public_key = process.env.PUBLIC_KEY;
@@ -27,7 +27,7 @@ describe("#Rave Virtual Accoount Test", function () {
 
         describe("#Rave Create Virtual Account Number test", function () {
             it("should return status 'success'",async function () {
-                this.timeout(25000);
+                this.timeout(15000);
                 var payload = {
                     "email": "user@example.com",
                     "seckey": secret_key,
@@ -35,10 +35,15 @@ describe("#Rave Virtual Accoount Test", function () {
                     "narration":"New account test"
 
                 }
-                var resp = await accountNumberInstance.accountNumber(payload);
-
-
-               return expect(resp.body).to.have.property('status', 'success')
+                vaccountResp = [];
+                accountNumberInstance.accountNumber(payload).then(resp => {
+                vaccountResp = resp;
+                if(resp.status == 'success') {
+                    done();
+                }
+                }).catch(err => {
+                    done(err);
+                })
             });
         });
     });

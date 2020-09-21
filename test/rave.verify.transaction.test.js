@@ -27,17 +27,20 @@ describe("#Rave Verify Transaction Test", function () {
 
         describe("#Rave Verify Transaction test", function () {
             it("should return transaction status message ", async function () {
-                this.timeout(10000);
+                this.timeout(15000);
                 var payload = {
-                    "txref": "FLW001286941",
+                    "txref": "FLW-MOCK-df2aada08423ab47f2647ec079ccf42f",
                     "SECKEY": secret_key,
-                   
-
                 }
-                var resp = await verifyInstance.verify(payload);
-
-
-               return expect(resp.body).to.have.property('message', 'Transaction not found')
+                verifyResp = [];
+                verifyInstance.verify(payload).then(resp => {
+                verifyResp = resp;
+                if(resp.status == 'success') {
+                    done();
+                }
+                }).catch(err => {
+                    done(err);
+                })
             });
         });
     });

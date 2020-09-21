@@ -26,8 +26,8 @@ describe("#Rave Virtual Card Test", function () {
     var virtualcardInstance = new virtualcards(ravebase);
 
     describe("#Rave create virtual card test", function () {
-        it("should return 'card created sucecessfully ' message ", function (done) {
-            this.timeout(10000);
+        it("should return 'card created sucecessfully ' message ", async function () {
+            this.timeout(15000);
             var payload = {
                 "secret_key": secret_key ,
                 "currency": "USD",
@@ -40,27 +40,33 @@ describe("#Rave Virtual Card Test", function () {
                 "billing_country": "US",
                 "callback_url": "https://your-callback-url.com/"
             }
-
-            var result = virtualcardInstance.create(payload).then(resp => {
-                return resp.body;
-            });
-
-            expect(result).to.eventually.have.property('message', 'Card created successfully').notify(done)
+            virtualcardResp = [];
+            virtualcardInstance.create(payload).then(resp => {
+            virtualcardResp = resp;
+            if(resp.message == 'Card created successfully') {
+                done();
+            }
+            }).catch(err => {
+                done(err);
+            })
         });
 
         describe("#Rave List virtual card test", function () {
             it("should return 'pass if the request was successful ", async function () {
-                this.timeout(10000);
+                this.timeout(15000);
                 var payload = {
                     "secret_key": secret_key ,
                     "page": 1
                 }
-
-                var resp = await virtualcardInstance.list(payload)
-                    
-                
-
-                return expect(resp.body).to.be.ok
+                virtualcardResp = [];
+                virtualcardInstance.list(payload).then(resp => {
+                virtualcardResp = resp;
+                if(resp.status == 'success') {
+                    done();
+                }
+                }).catch(err => {
+                    done(err);
+                })
             });
 
 
@@ -69,17 +75,20 @@ describe("#Rave Virtual Card Test", function () {
         });
         describe("#Rave Get virtual card test", function () {
             it("should return ID:xxxxxxxx", function (done) {
-                this.timeout(10000);
+                this.timeout(15000);
                 var payload = {
                     "secret_key": secret_key ,
                     "id": card_id
                 }
-
-                var result = virtualcardInstance.get(payload).then(resp => {
-                    return resp.body.data;
-                });
-
-                expect(result).to.eventually.have.deep.property('id', card_id).notify(done)
+                virtualcardResp = [];
+                virtualcardInstance.get(payload).then(resp => {
+                virtualcardResp = resp;
+                if(resp.data.id == card_id) {
+                    done();
+                }
+                }).catch(err => {
+                    done(err);
+                })
             });
 
 
@@ -104,39 +113,45 @@ describe("#Rave Virtual Card Test", function () {
         // });
 
         describe("#Rave Fund virtual card test", function () {
-            it("should return 'message: Card was funded successfully", function (done) {
-                this.timeout(10000);
+            it("should return 'message: Card was funded successfully", async function () {
+                this.timeout(15000);
                 var payload = {
                     "secret_key": secret_key ,
                     "id": card_id,
-                    "amount": "1",
+                    "amount": "3",
                     "debit_currency": "USD"
                 }
-
-                var result = virtualcardInstance.fund(payload).then(resp => {
-                    return resp.body;
-                });
-
-                expect(result).to.eventually.have.property('Message', 'Card was funded successfully').notify(done)
+                virtualcardResp = [];
+                virtualcardInstance.fund(payload).then(resp => {
+                virtualcardResp = resp;
+                if(resp.message == 'Card was funded successfully') {
+                    done();
+                }
+                }).catch(err => {
+                    done(err);
+                })
             });
 
         });
 
         
         describe("#Rave Withdraw from a virtual card test", function () {
-            it("should return 'Message: Withdrawal successful'", function (done) {
-                this.timeout(10000);
+            it("should return 'Message: Withdrawal successful'", async function () {
+                this.timeout(15000);
                 var payload = {
                     "secret_key": secret_key,
                     "amount": "1",
                     "card_id": card_id
                 }
-
-                var result = virtualcardInstance.withdraw(payload).then(resp => {
-                    return resp.body;
-                });
-
-                expect(result).to.eventually.have.property('Message', 'Withdrawal successful').notify(done)
+                virtualcardResp = [];
+                virtualcardInstance.withdraw(payload).then(resp => {
+                virtualcardResp = resp;
+                if(resp.message == 'Withdrawal successful') {
+                    done();
+                }
+                }).catch(err => {
+                    done(err);
+                })
             });
 
         });

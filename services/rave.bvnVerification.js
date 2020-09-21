@@ -22,13 +22,10 @@ function service(data, _rave) {
     var d = q.defer();
 
     q.fcall(() => {
-            // console.log("hellooo", data);
+            
 
             var validated = morx.validate(data, spec, _rave.MORX_DEFAULT);
-            // console.log(validated)
-            var params = {}
             var params = validated.params;
-
             return params;
 
 
@@ -40,11 +37,11 @@ function service(data, _rave) {
             params.secret_key = _rave.getSecretKey();
             params.method = "GET"
 
-            return _rave.request(`v2/kyc/bvn/${params.bvn}`, params)
+            return _rave.request(`v2/kyc/bvn/${params.bvn}?${params.secret_key}`, params)
         })
         .then(response => {
 
-            // console.log(response);
+
             d.resolve(response.body);
 
 

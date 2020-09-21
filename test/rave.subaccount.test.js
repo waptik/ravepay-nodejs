@@ -20,9 +20,9 @@ describe("#Rave Subaccount test", function() {
     var production_flag = process.env.PRODUCTION_FLAG;
     var ravebase = new base(public_key, secret_key , false);
     var subaccountInstance = new subaccount(ravebase);
-    describe("#Rave Subaccount create  test", function () {
+    describe("#Rave Subaccount create test", function () {
         it("should return a success status response", async function () {
-            this.timeout(10000);
+            this.timeout(15000);
             var payload = {
                 "account_bank": "044",
                 "account_number": "0690000031",
@@ -31,14 +31,19 @@ describe("#Rave Subaccount test", function() {
                 "business_contact": "Olu daniel",
                 "business_contact_mobile": "090890382",
                 "business_mobile": "09087930450",
-              "country": "NG",
+                "country": "NG",
                 "meta": [{"metaname": "MarketplaceID", "metavalue": "ggs-920900"}],
                 "seckey":secret_key 
-              }
-            var resp = await subaccountInstance.create(payload);
-            return expect(resp.body).to.be.ok
-                
-           
+            }
+            subaccountResp = [];
+            subaccountInstance.create(payload).then(resp => {
+            subaccountResp = resp;
+            if(resp.status == 'success') {
+                done();
+            }
+            }).catch(err => {
+                done(err);
+            })
         })
     })
 })

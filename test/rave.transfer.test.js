@@ -19,6 +19,7 @@ describe("#Rave Transfer test", function() {
     var transferInstance = new transfer(ravebase);
     // console.log(transferInstance);
 
+
     describe("#Rave initiate Transfer leg test", function () {
 
         it("should return a status success response",async function() {
@@ -53,44 +54,44 @@ describe("#Rave Transfer test", function() {
         })
     });
 
-    describe("#Rave bulk transfer test", function () {
-        it("should return status: BULK-TRANSFER-CREATED", function(done) {
-            this.timeout(15000);
-            var payload = {
-                "seckey":secret_key,
-                "title":"May Staff Salary",
-                "bulk_data":[
-                    {
-                      "Bank":"044",
-                      "Account Number": "0690000032",
-                      "Amount":300,
-                      "Currency":"NGN",
-                      "Narration":"Bulk transfer 1",
-                      "reference": "mk-82973029-uy"
-                  },
-                  {
-                      "Bank":"044",
-                      "Account Number": "0690000034",
-                      "Amount":200,
-                      "Currency":"NGN",
-                      "Narration":"Bulk transfer 2",
-                      "reference": "mk-2838747yu50"
-                  }
-                ]
-              }
-            transferResp=[];
-            transferInstance.bulk(payload).then(resp => {
-                // console.log("Bulk transfers", resp.body)
-                transferResp = resp;
-                if (resp.statusCode == 200) {
-                    done();
-                }
+    // describe("#Rave bulk transfer test", function () {
+    //     it("should return status: BULK-TRANSFER-CREATED", function(done) {
+    //         this.timeout(15000);
+    //         var payload = {
+    //             "seckey":secret_key,
+    //             "title":"May Staff Salary",
+    //             "bulk_data":[
+    //                 {
+    //                   "Bank":"044",
+    //                   "Account Number": "0690000032",
+    //                   "Amount":300,
+    //                   "Currency":"NGN",
+    //                   "Narration":"Bulk transfer 1",
+    //                   "reference": "mk-82973029-uy"
+    //               },
+    //               {
+    //                   "Bank":"044",
+    //                   "Account Number": "0690000034",
+    //                   "Amount":200,
+    //                   "Currency":"NGN",
+    //                   "Narration":"Bulk transfer 2",
+    //                   "reference": "mk-2838747yu50"
+    //               }
+    //             ]
+    //           }
+    //         transferResp=[];
+    //         transferInstance.bulk(payload).then(resp => {
+    //             // console.log("Bulk transfers", resp.body)
+    //             transferResp = resp;
+    //             if (resp.statusCode == 200) {
+    //                 done();
+    //             }
                 
-            }).catch(err => {
-                done(err);
-            })
-        })
-    });
+    //         }).catch(err => {
+    //             done(err);
+    //         })
+    //     })
+    // });
 
     // describe("#Rave, Fetch a single Transfer", function () {
     //     it("should return success, QUERIED-TRANSFERS", function(done) {
@@ -131,23 +132,22 @@ describe("#Rave Transfer test", function() {
     // });
 
     describe("#Get your balance for transfers", function () {
-        it("should return: success, WALLET-BALANCE", function(done) {
-            this.timeout(12000);
+        it("should return: success, WALLET-BALANCE", async function() {
+            this.timeout(20000);
             var payload = {
                 "currency": "NGN",
                 "seckey": secret_key
             }
             transferResp=[];
-            transferInstance.getApplicableFee(ravebase).then(resp => {
-                // console.log("Get transfer balance", resp.body)
+            transferInstance.getBalance(payload).then(resp => {
+                // console.log("Initiate transfer", resp.body)
                 transferResp = resp;
                 if (resp.statusCode == 200) {
                     done();
-                }
-                
+                } 
             }).catch(err => {
                 done(err);
-            })
+            })  
         })
     });
 })

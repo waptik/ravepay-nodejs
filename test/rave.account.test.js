@@ -23,7 +23,7 @@ describe("#Rave Account charge test", function() {
 
     describe("#Rave Account charge leg test", function () {
         it("should return a 200 status response", function(done) {
-            this.timeout(12000);
+            this.timeout(20000);
             var payload = {
                 "accountnumber": "0690000031",
                 "accountbank": "044",
@@ -89,7 +89,7 @@ describe("#Rave Account charge test", function() {
     describe("#Rave account validation leg test", function() {
         
         it("should return a 200 status response", function(done) {
-            this.timeout(12000);
+            this.timeout(15000);
             var payload2 = {
                 "transactionreference": chargeResp.body.data.flwRef,
                 "otp": "12345"
