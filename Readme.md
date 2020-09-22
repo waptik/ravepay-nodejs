@@ -2,7 +2,10 @@
     <img title="Flutterwave" height="200" src="https://flutterwave.com/images/logo-colored.svg" width="50%"/>
 </p>
 
-# Flutterwave Nodejs Library v1.0.0
+# Flutterwave Nodejs Library
+![npm](https://img.shields.io/npm/dt/flutterwave-node)
+![npm](https://img.shields.io/npm/v/flutterwave-node)
+![NPM](https://img.shields.io/npm/l/flutterwave-node)
 
 ## Flutterwave Services exposed by the library
 
