@@ -1,6 +1,9 @@
 var morx = require('morx');
 var q = require('q');
 const axios = require('axios');
+const package = require('../package.json');
+
+
 var spec = morx.spec()
 .build('page', 'required:false, eg:1')
 .build('status', 'required:false, eg:successful')
@@ -11,11 +14,12 @@ function service(data,_rave) {
 	
 	axios.post('https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
 		 "publicKey": _rave.getPublicKey(),
-		 "language": "NodeJs",
-		 "version": "1.0",
+		 "language": "NodeJs v2",
+		 "version": package.version,
 		 "title": "Incoming call",
-		     "message": "Transfer; List"
+		     "message": "list all Transfers"
 	   })
+	   
 	var d = q.defer();
 
 	q.fcall(() => {

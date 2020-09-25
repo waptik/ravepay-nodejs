@@ -1,9 +1,9 @@
 var morx = require('morx');
-
+const package = require('../package.json');
 var q = require('q');
 const axios = require('axios');
 
-
+// console.log(package.version)
 
 var spec = morx.spec()
 
@@ -13,8 +13,8 @@ var spec = morx.spec()
 function service(data, _rave) {
     axios.post('https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
          "publicKey": _rave.getPublicKey(),
-         "language": "NodeJs",
-         "version": "1.0",
+         "language": "NodeJs v2",
+         "version": package.version,
          "title": "Incoming call",
              "message": "Bank Verification"
        })
@@ -37,7 +37,7 @@ function service(data, _rave) {
             params.secret_key = _rave.getSecretKey();
             params.method = "GET"
 
-            return _rave.request(`v2/kyc/bvn/${params.bvn}?${params.secret_key}`, params)
+            return _rave.request(`v2/kyc/bvn/${params.bvn}`, params)
         })
         .then(response => {
 

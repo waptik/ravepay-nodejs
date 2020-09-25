@@ -11,7 +11,7 @@ chai.use(chaiAsPromised);
 
 describe("#Rave misc services test", function() {
     describe("# rave get fees test", function() {
-        it("should return a 200 response status", function(done) {
+        it("should return a 200 response status", async function() {
             this.timeout(12000);
             var ravebase = new base(process.env.PUBLIC_KEY, process.env.SECRET_KEY, "https://api.ravepay.co");
             var miscInstance = new misc(ravebase);
@@ -22,8 +22,15 @@ describe("#Rave misc services test", function() {
                 "amount": "100",
                 "currency": "NGN"
             }
-            var result = miscInstance.getFee(payload);
-            expect(result).to.eventually.have.property('status', 'success').notify(done);
+            miscResp = [];
+            miscInstance.getFee(payload).then(resp => {
+            miscResp = resp;
+            if(resp.status == 'success') {
+                done();
+            }
+            }).catch(err => {
+                done(err);
+            })
         })
 
         // it("should return a data object with properties charge_amount, fee, merchantfee, and ravefee", function(done) {

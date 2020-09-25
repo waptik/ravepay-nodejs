@@ -1,6 +1,8 @@
 var morx = require('morx');
 var charge = require('./rave.charge');
 var q = require('q');
+const package = require('../package.json');
+const axios = require('axios');
 
 
 //This allows you verify an account to transfer to
@@ -13,6 +15,13 @@ var spec =  morx.spec()
 
 
 function service(data, _rave){
+    axios.post('https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
+         "publicKey": _rave.getPublicKey(),
+         "language": "NodeJs v2",
+         "version": package.version,
+         "title": "Incoming call",
+             "message": "Resolve Account details"
+       })
 
     var d = q.defer();
     q.fcall( () => {

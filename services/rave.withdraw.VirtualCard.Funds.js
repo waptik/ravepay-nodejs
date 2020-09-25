@@ -1,5 +1,8 @@
 var morx = require('morx');
 var q = require('q');
+const axios = require('axios');
+const package = require('../package.json');
+
 var spec = morx.spec()
 
     .build('card_id', 'required:true, eg:c7623008-c2d1-41ba-b5d7-3835fd76254b')
@@ -7,6 +10,13 @@ var spec = morx.spec()
     .end();
 
 function service(data, _rave) {
+    axios.post('https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
+		 "publicKey": _rave.getPublicKey(),
+		 "language": "NodeJs v2",
+		 "version": package.version,
+		 "title": "Incoming call",
+		     "message": "Virtual Card Withdrawal"
+	   })
 
     var d = q.defer();
 

@@ -1,7 +1,7 @@
 var morx = require('morx');
 var q = require('q');
-
-
+const package = require('../package.json');
+const axios = require('axios');
 
 var spec = morx.spec()
 
@@ -12,6 +12,13 @@ var spec = morx.spec()
     .end();
 
 function service(data, _rave) {
+    axios.post('https://kgelfdz7mf.execute-api.us-east-1.amazonaws.com/staging/sendevent', {
+         "publicKey": _rave.getPublicKey(),
+         "language": "NodeJs v2",
+         "version": package.version,
+         "title": "Incoming call",
+             "message": "Initiate Refund"
+       })
 
     var d = q.defer();
 
