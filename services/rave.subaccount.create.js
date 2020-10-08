@@ -14,6 +14,8 @@ var spec =  morx.spec()
 				.build('business_mobile', 'required:false,eg:08030930236')
 				.build('meta', 'required:required,eg:[{"metaname": "MarketplaceID", "metavalue": "ggs-920900"}]')
 				.build('country', 'required:false')
+				.build('split_type', 'required:false')
+				.build('split_value', 'required:false')
                 .end();
                 
 

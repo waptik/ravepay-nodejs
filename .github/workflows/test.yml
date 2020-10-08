@@ -1,0 +1,21 @@
+name: test
+on:
+  push:
+    branches: [ master ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm test
+        env:
+          PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          CARD_ID: ${{ secrets.CARD_ID }}

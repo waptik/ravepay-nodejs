@@ -1,6 +1,6 @@
 {
-  "name": "flutterwave-node",
-  "version": "1.2.1",
+  "name": "@waptik/ravepay-nodejs",
+  "version": "1.2.1-1",
   "description": "Official Node library for Rave by Flutterwave",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Flutterwave/ravepay-nodejs.git"
+    "url": "git+https://github.com/waptik/ravepay-nodejs.git"
   },
   "dependencies": {
     "axios": "^0.19.2",

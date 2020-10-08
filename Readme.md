@@ -3,9 +3,10 @@
 </p>
 
 # Flutterwave Nodejs Library
-![npm](https://img.shields.io/npm/dt/flutterwave-node)
-![npm](https://img.shields.io/npm/v/flutterwave-node)
-![NPM](https://img.shields.io/npm/l/flutterwave-node)
+> A modified library by waptik, forked from [flutterwave](https://github.com/Flutterwave/ravepay-nodejs)
+![npm](https://img.shields.io/npm/dt/@waptik/ravepay-nodejs)
+![npm](https://img.shields.io/npm/v/@waptik/ravepay-nodejs)
+![NPM](https://img.shields.io/npm/l/@waptik/ravepay-nodejs)
 
 ## Flutterwave Services exposed by the library
 
@@ -35,7 +36,7 @@ For more information on the services listed above, visit the [Ravepay website](h
 
 ## How to use
 
-`npm install flutterwave-node`
+`npm install @waptik/ravepay-nodejs`
 
 
  You can get your PUBLICK_KEY and SECRET_KEY from the Rave dashboard. 
@@ -45,7 +46,7 @@ For more information on the services listed above, visit the [Ravepay website](h
 
  
 ```
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTION_FLAG);
 ```
@@ -62,7 +63,7 @@ const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, true); //Base url is 'http://a
 ### Card Charge
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY,  PRODUCTION_FLAG);
 
@@ -107,7 +108,7 @@ Get a more detailed overview of card payments with Rave [here](https://medium.co
 
 ```javascript
 
-const Ravepay = require("flutterwave-node");
+const Ravepay = require("@waptik/ravepay-nodejs");
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY,  PRODUCTION_FLAG);
 
@@ -190,7 +191,7 @@ This is called to start a transfer. The payload should contain the following car
 
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY,  PRODUCTION_FLAG);
 
@@ -247,7 +248,7 @@ This allows you send bulk transfers.
 
 
 ```javascript
-const Ravepay = require('flutterwave-node';
+const Ravepay = require('@waptik/ravepay-nodejs';
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY,  PRODUCTION_FLAG);
 
@@ -304,7 +305,7 @@ This allows you retrieve a single transfer.
 It uses a GET method.
 
 ```javascript
-const Ravepay = require('flutterwave-node';
+const Ravepay = require('@waptik/ravepay-nodejs';
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY,  PRODUCTION_FLAG);
 
@@ -362,7 +363,7 @@ A sample response is:
 This allows you fetch all transfers using a GET method
 
 ```javascript
-const Ravepay = require('flutterwave-node';
+const Ravepay = require('@waptik/ravepay-nodejs';
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY,  PRODUCTION_FLAG);
 
@@ -387,7 +388,7 @@ listTransfer();
 This retrieves the fee for a transfer
 
 ```javascript
-const Ravepay = require('flutterwave-node';
+const Ravepay = require('@waptik/ravepay-nodejs';
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY,  PRODUCTION_FLAG);
 
@@ -412,7 +413,7 @@ getFee();
 This helps you get your balance for transfers.
 
 ```javascript
-const Ravepay = require('flutterwave-node';
+const Ravepay = require('@waptik/ravepay-nodejs';
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTION_FLAG);
 
@@ -468,7 +469,7 @@ This is used to create and manage subaccounts
 This function helps you to create a subaccount on rave.
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTION_FLAG);
 
@@ -536,7 +537,7 @@ A sample ```.err``` contains
 This allows you to list all or specific subaccounts.
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTION_FLAG);
 
@@ -582,7 +583,7 @@ fetchSubAcct()
 This allows you delete a single subaccount using the subaccount ID
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTTION_FLAG);
 const deleteSubAcct = async () => {
@@ -607,7 +608,7 @@ deleteSubAcct();
 This allows you update a subaccount
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, PRODUCTTION_FLAG);
 
@@ -660,7 +661,7 @@ When you have created a payment plan you can subscribe a customer to it by simpl
 This function allows you to create payment plans  on rave.
 
 ```javascript
-var Ravepay = require('flutterwave-node');
+var Ravepay = require('@waptik/ravepay-nodejs');
 
 var rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -710,7 +711,7 @@ A sample response is seen below:
 This function allows you to list all the payment plans  on an account.
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -797,7 +798,7 @@ rave.Paymentplan.edit(
 This function allows you to list all subscriptions on a merchant account.
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -871,7 +872,7 @@ Rave allows merchants to re-sell bill payment services such as airtime payments 
 This function allows you to make bills payment (DStv, GOTV, Remita, Airtime etc.)
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -935,7 +936,7 @@ This function allows you to accept payments using the Ghana mobile money method.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -983,7 +984,7 @@ Gh_mobilemoney();
 This function allows you to accept payments using Mpesa (KES) mobile money method.
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLICK_KEY, SECRET_KEY, false);
 
@@ -1028,7 +1029,7 @@ This function allows you to accept payments using Zambia mobile money method.
 ```javascript
 //Pass currency as ZMW and country as NG
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1072,7 +1073,7 @@ This function allows you to accept payments using Uganda mobile money method.
 ```javascript
 //pass currency as UGX and country as NG
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1118,7 +1119,7 @@ This function allows you to accept payments using Rwanda mobile money method.
 ```javascript
 //Pass currency as RWF and country as NG.
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1167,7 +1168,7 @@ For the Central African CFA franc (French: franc CFA or simply franc, ISO 4217 c
 ```javascript
 //pass currency as XAF or XOF
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1223,7 +1224,7 @@ This shows how to validate your customer's BVN.
 BVN Validation is only available for Nigerian customers. It allows you verify BVN supplied by a customer and can also be used for customer KYC methods such as; validating date of birth supplied by the customer, validating the mobile number, first name & last name etc.
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1249,7 +1250,7 @@ callBvn();
 This shows how to verify transactions using your own transaction reference.
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay("FLWPUBK_TEST-xxxxxxxxx-X", "FLWSECK_TEST-9xxxxxx-X",false);
 
@@ -1281,7 +1282,7 @@ This describes how to create a virtual card on Rave.
 
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1345,7 +1346,7 @@ This allows you to list all virtual cards on your profile.
 
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1373,7 +1374,7 @@ This allows you fetch a virtual card on your profile.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1398,7 +1399,7 @@ This describes how to terminate a virtual card on your profile.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1422,7 +1423,7 @@ This allows you to fund an existing virtual card.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1448,7 +1449,7 @@ This API allows you to fetch transactions by date range on a single card.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1476,7 +1477,7 @@ Withdraw existing funds from a customer's card using the withdraw API.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1506,7 +1507,7 @@ You can freeze and unfreeze the virtual card with API.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1530,7 +1531,7 @@ freeze_card();
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1562,7 +1563,7 @@ The virtual accounts created are customer-specific. Transfers to account numbers
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1592,7 +1593,7 @@ create_virtual_account();
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1624,7 +1625,7 @@ List all settlements made to your bank account and your subaccounts.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const pubkey = "FLWPUBK_TEST-xxxxxxxxxx";
 const seckey = "FLWSECK_TEST-xxxxxxx";
@@ -1654,7 +1655,7 @@ List all settlements made to your bank account and your subaccounts.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1688,7 +1689,7 @@ Rave allows you collect payments from your customers offline using USSD. With US
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1736,7 +1737,7 @@ This function allows you to create a new Ebills order.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1775,7 +1776,7 @@ This API is used to update the amount to be paid.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1807,7 +1808,7 @@ Rave allows your convert currencies real time via api's to charge your customers
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1842,7 +1843,7 @@ This allows you to get balances for ledger and available balance across all or s
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1872,7 +1873,7 @@ This helps you list all transactions on your account.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1901,7 +1902,7 @@ This allow you to get fee for a charged amount.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1929,7 +1930,7 @@ This page describes a list of banks that can be charged on rave.
 
 ```javascript
 
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
 
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
@@ -1955,7 +1956,7 @@ list_banks();
 This page describes how to get balance history and filter using currency, date or page.
 
 ```javascript
-const Ravepay = require('flutterwave-node');
+const Ravepay = require('@waptik/ravepay-nodejs');
  
 const rave = new Ravepay(PUBLIC_KEY, SECRET_KEY, false);
 
