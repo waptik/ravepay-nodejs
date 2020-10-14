@@ -21,6 +21,7 @@ var spec = morx
     .build("orderRef", "required:true, eg:7712735")
     .build("is_mobile_money_gh", "required:false,validators:isNumeric, eg:1")
     .build('redirect_url', 'required:false')
+    .build('subaccounts', 'required:false')
     .end();
 
 function service(data, _rave) {
